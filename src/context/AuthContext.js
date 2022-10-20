@@ -1,52 +1,26 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { auth, db } from '../firebase';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import {setDoc,doc} from 'firebase/firestore'
-
 
   /* eslint-disable  */
+import { createContext, useEffect, useReducer } from "react";
+import AuthReducer from "./AuthReducer";
 
-const AuthContext = createContext();
 
-export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
-
-  function signUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, 'users', email), {
-        savedShows: []
-    })
-  }
-
-  function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
-
-  function logOut() {
-    return signOut(auth);
-  }
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => {
-      unsubscribe();
-    };
-  });
-
-  return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
-
-export function UserAuth() {
-  return useContext(AuthContext);
-}
+  
+  const INITIAL_STATE = {
+    currentUser: JSON.parse(localStorage.getItem("user")) || null,
+  };
+  
+  export const AuthContext = createContext(INITIAL_STATE);
+  
+  export const AuthContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+  
+    useEffect(() => {
+      localStorage.setItem("user", JSON.stringify(state.currentUser));
+    }, [state.currentUser]);
+  
+    return (
+      <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  };

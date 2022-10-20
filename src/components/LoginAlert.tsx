@@ -14,7 +14,6 @@ function LoginAlert({alertBox}: any) {
         setOpen(alertBox)
 
     },[alertBox])
-    console.log('here =>', open)
 
   return (
 

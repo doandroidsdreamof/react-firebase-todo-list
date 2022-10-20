@@ -23,9 +23,6 @@ module.exports = {
         'card-dark': 'hsl(225, 8%, 10%)',
         'nav': 'hsl(240, 7%, 9%)',
         'explore-input': 'hsl(240, 1%, 20%)',
-        
-  
-
       },
       height: {
         'onehundred': '100%',
@@ -39,6 +36,15 @@ module.exports = {
         'forty': '40%',
         'thirty': '30%',
         'twenty': '20%',
+      },
+      width: {
+        'onehundred': '100%',
+        'ninty': '90%',
+        'eighty': '80%',
+        'seventy': '70%',
+        'fifty': '50%',
+        'forty': '40%',
+        'thirty': '30%',
       },
 
     },

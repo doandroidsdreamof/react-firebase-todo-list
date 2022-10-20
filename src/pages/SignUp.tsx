@@ -6,8 +6,8 @@ import registerImage from '../assets/image/register.jpg'
 
  const SignUp: FC = () => {
   return (
-    <div className="relative container m-auto px-6  text-gray-500 md:px-12 ">
-    <div className="m-auto space-y-8 md:w-8/12 lg:w-full max-h-fit  ">
+    <div className="relative container m-auto   text-gray-500 ">
+    <div className="m-auto space-y-8 md:w-8/12  max-h-fit  lg:w-eighty ">
         <div className="rounded-xl  bg-opacity-75  backdrop-blur-2xl bg-white   shadow-xl h">
             <div className="lg:grid lg:grid-cols-2 ">
                 <div className="rounded-lg lg:block " hidden>
