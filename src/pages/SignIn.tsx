@@ -25,13 +25,13 @@ const SignIn: FC = () => {
   },[error,alertBoxMail])
 
 
-  async function validate (e: string){
-    setEmail(e)
+  async function validate (e: any){
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e) && e.length > 0) {
-      setAlertBoxMail(false)
+      setAlertBoxMail(true)
+      
     }  
-   if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e) && e.length > 0){
-    setAlertBoxMail(true)
+   else{
+    setAlertBoxMail(false)
     setEmail(e)
       
      
@@ -62,7 +62,6 @@ const SignIn: FC = () => {
   return (
     <div className='container m-auto    text-gray-500 px-6  md:px-12 xl:px-40'>
        <LoginAlert alertBox={alertBox} />
-       {!alertBoxMail ? <ValidEmailAddress /> : null}
       <div className='m-auto space-y-8   md:w-8/12 lg:w-full'>
         <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-white shadow-md'>
           <div className='lg:grid lg:grid-cols-2'>
@@ -108,7 +107,6 @@ const SignIn: FC = () => {
                     id='pwd'
                     required={true}
                     minLength={8}
-                    onChange={(e) => setPassword(e.target.value)}
                     className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                             focus:ring-2 focus:ring-sky-300 focus:outline-none
                                             invalid:ring-2 '

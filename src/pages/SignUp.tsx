@@ -8,7 +8,7 @@ import registerImage from '../assets/image/register.jpg'
   return (
     <div className="relative container m-auto px-6  text-gray-500 md:px-12 ">
     <div className="m-auto space-y-8 md:w-8/12 lg:w-full max-h-fit  ">
-        <div className="rounded-xl  bg-opacity-75  backdrop-blur-2xl   shadow-xl h">
+        <div className="rounded-xl  bg-opacity-75  backdrop-blur-2xl bg-white   shadow-xl h">
             <div className="lg:grid lg:grid-cols-2 ">
                 <div className="rounded-lg lg:block " hidden>
                     <img
@@ -30,7 +30,7 @@ import registerImage from '../assets/image/register.jpg'
                                     id="firstName"
                                     placeholder="First Name"
                                     required
-                                    className="block w-full lg:w-1/2 px-4 py-3 rounded-md border bg-gray-200 border-gray-300 text-gray-600 transition duration-300
+                                    className="block w-full lg:w-1/2 px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
  "
                                 />
@@ -41,7 +41,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
                                     id="lastName"
                                     placeholder="Last Name"
                                     required
-                                    className="block w-full  lg:w-1/2  px-4 py-3 rounded-md border bg-gray-200 border-gray-300 text-gray-600 transition duration-300
+                                    className="block w-full  lg:w-1/2  px-4 py-3 rounded-md border  border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
  "
                                 />
@@ -54,7 +54,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
                                 id="email"
                                 placeholder="email"
                                 required
-                                className=" px-4 w-full py-3 rounded-md border bg-gray-200 border-gray-300 text-gray-600 transition duration-300
+                                className=" px-4 w-full py-3 rounded-md border  border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
  "
                             />
@@ -70,7 +70,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
                                 id="pwd"
                                 placeholder="password"
                                 minLength={8}
-                                className="block w-full px-4  bg-gray-200 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+                                className="block w-full px-4   py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                   focus:ring-2 focus:ring-sky-300 focus:outline-none
                                   invalid:ring-2 "
                             />
