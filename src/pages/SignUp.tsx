@@ -77,7 +77,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
                             <div className=" flex w-full mt-4 flex-row h-11 text-center justify-center">
                                 <button
                                     type="button"
-                                    className="text-white  justify-center   text-xs w-full bg-[#3f4d5f] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-md   text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+                                    className="text-white  justify-center   text-xs w-full bg-[#3f4d5f] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-md   text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/65 mr-2 mb-2"
                                 >
                                     <svg
                                         className="mr-2 -ml-1 w-4 h-4"
