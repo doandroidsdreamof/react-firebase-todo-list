@@ -1,10 +1,68 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useState, useEffect, FC,useContext } from 'react'
 import loginImage from '../assets/image/login2.jpg'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
+import {UserAuth} from '../context/AuthContext'
+import LoginAlert from '../components/LoginAlert'
+import ValidEmailAddress from '../components/ValidEmailAddress'
+import InvalidEmail from '../components/InvalidEmail'
 
 const SignIn: FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('')
+  const [alertBox, setAlertBox] = useState(false)
+  const [alertBoxMail, setAlertBoxMail] = useState(false)
+  const { user, logIn } = UserAuth();
+  const navigate = useNavigate();
+
+
+
+  useEffect(()=>{
+
+
+  },[error,alertBoxMail])
+
+
+  async function validate (e: string){
+    setEmail(e)
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e) && e.length > 0) {
+      setAlertBoxMail(false)
+    }  
+   if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e) && e.length > 0){
+    setAlertBoxMail(true)
+    setEmail(e)
+      
+     
+    }
+ 
+}
+
+
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+    setError('')
+    try {
+      await logIn(email, password)
+      navigate('/')
+    } catch (error: any) {
+      setAlertBox(true)
+      console.log(error);
+      setError(error.message)
+   
+
+    }
+  };
+
+  //mutlukuytuoglu@gmail.com
+
+
   return (
     <div className='container m-auto    text-gray-500 px-6  md:px-12 xl:px-40'>
+       <LoginAlert alertBox={alertBox} />
+       {!alertBoxMail ? <ValidEmailAddress /> : null}
       <div className='m-auto space-y-8   md:w-8/12 lg:w-full'>
         <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-white shadow-md'>
           <div className='lg:grid lg:grid-cols-2'>
@@ -13,7 +71,7 @@ const SignIn: FC = () => {
             </div>
             <div className='p-6 sm:p-16'>
               <h2 className='mb-8 text-2xl text-cyan-900 font-bold'>Sign in to your account</h2>
-              <form action='' className='space-y-8'>
+              <form onSubmit={handleLogin} className='space-y-8'>
                 <div className='space-y-2'>
                   <label htmlFor='email' className='text-gray-700'>
                     Email
@@ -23,10 +81,16 @@ const SignIn: FC = () => {
                     name='email'
                     id='email'
                     required={true}
+                    onChange={(e) => validate(e.target.value)}
                     className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
         focus:ring-2 focus:ring-sky-300 focus:outline-none
         invalid:ring-2 '
                   />
+                            {alertBoxMail ? (
+                                        <span className="text-red-600 font-roboto text-normal absolute translate-y-1 m-0 flex">
+                                            {'this email address is invalid'}
+                                        </span>
+                                    ) : null}
                 </div>
 
                 <div>
@@ -44,12 +108,12 @@ const SignIn: FC = () => {
                     id='pwd'
                     required={true}
                     minLength={8}
+                    onChange={(e) => setPassword(e.target.value)}
                     className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                             focus:ring-2 focus:ring-sky-300 focus:outline-none
                                             invalid:ring-2 '
                   />
                 </div>
-
                 <button
                   type='submit'
                   className='w-full py-3 px-6 rounded-md bg-sky-600

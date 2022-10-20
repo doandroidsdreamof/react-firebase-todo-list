@@ -1,4 +1,5 @@
 import React from 'react';
+  /* eslint-disable  */
 
 const getInitialTheme = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -21,7 +22,7 @@ export const ThemeContext = React.createContext();
 export const ThemeProvider = ({ initialTheme, children }) => {
     const [theme, setTheme] = React.useState(getInitialTheme);
 
-    const rawSetTheme = (rawTheme) => {
+    const rawSetTheme  = (rawTheme) => {
         const root = window.document.documentElement;
         const isDark = rawTheme === 'dark';
 
