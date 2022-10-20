@@ -13,12 +13,16 @@ function App() {
         <Route
           path='/'
           element={
-            <FormWrapper>
-              <SignIn />
-            </FormWrapper>
+            <Home />
+         
           }
         />
-        <Route path='/login' element={<SignIn />} />
+        <Route path='/login' element={
+         <FormWrapper>
+         <SignIn />
+       </FormWrapper>
+        
+        } />
         <Route
           path='/register'
           element={

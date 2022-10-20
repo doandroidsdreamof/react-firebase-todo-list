@@ -1,14 +1,15 @@
 import React, { useState, useEffect, FC } from 'react'
 import loginImage from '../assets/image/login2.jpg'
+import { Link } from 'react-router-dom'
 
 const SignIn: FC = () => {
   return (
     <div className='container m-auto    text-gray-500 px-6  md:px-12 xl:px-40'>
-      <div className='m-auto space-y-8  md:w-8/12 lg:w-full'>
+      <div className='m-auto space-y-8   md:w-8/12 lg:w-full'>
         <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-white shadow-md'>
           <div className='lg:grid lg:grid-cols-2'>
             <div className='rounded-lg lg:block' hidden>
-              <img src={loginImage} className='rounded-l-xl shadow-md object-cover h-onehundred' alt='take a note' />
+              <img src={loginImage} className='rounded-l-xl shadow-md object-cover h-onehundred' alt='login-image' />
             </div>
             <div className='p-6 sm:p-16'>
               <h2 className='mb-8 text-2xl text-cyan-900 font-bold'>Sign in to your account</h2>
@@ -21,9 +22,10 @@ const SignIn: FC = () => {
                     type='email'
                     name='email'
                     id='email'
+                    required={true}
                     className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
         focus:ring-2 focus:ring-sky-300 focus:outline-none
-        invalid:ring-2 invalid:ring-red-400'
+        invalid:ring-2 '
                   />
                 </div>
 
@@ -40,9 +42,11 @@ const SignIn: FC = () => {
                     type='password'
                     name='pwd'
                     id='pwd'
+                    required={true}
+                    minLength={8}
                     className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                             focus:ring-2 focus:ring-sky-300 focus:outline-none
-                                            invalid:ring-2 invalid:ring-red-400'
+                                            invalid:ring-2 '
                   />
                 </div>
 
@@ -55,10 +59,10 @@ const SignIn: FC = () => {
                 </button>
 
                 <p className='border-t pt-6 text-sm'>
-                  Don&apos;t have an account ?
-                  <a href='' className='text-sky-500'>
+                 Don&apos;t have an account ?
+                  <Link to='/register' className='text-sky-500 ml-2'>
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>
