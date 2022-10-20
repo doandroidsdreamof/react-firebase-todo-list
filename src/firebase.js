@@ -1,7 +1,8 @@
+  /* eslint-disable  */
 import { initializeApp } from "firebase/app";
 
 
-const firebaseConfig = {
+  const firebaseConfig = {
   apiKey: "AIzaSyAb96gU-AJGG-UmEwcBNTU1KS5hUuI3eek",
   authDomain: "todo-list-7d913.firebaseapp.com",
   projectId: "todo-list-7d913",

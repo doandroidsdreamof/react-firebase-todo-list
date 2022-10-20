@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from 'react'
 import './App.css';
-import { useState, useEffect } from 'react'
-import React from 'react'
-
-
+import SignIn from './pages/SignIn.jsx'
+import SignUp from './pages/SignUp.jsx'
+import Home from './pages/Home.jsx'
 
 
 function App() {
@@ -14,9 +14,9 @@ console.log('deneme')
 
   return (
     <div className="">
-      <h1 className='text-8xl underline'>test</h1>
-
-
+<SignIn />
+<SignUp />
+<Home />
     </div>
   );
 }
