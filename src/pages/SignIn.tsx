@@ -26,7 +26,22 @@ const SignIn: FC = () => {
   // const googleProvider = new GoogleAuthProvider()
   // const githubProvider = new GithubAuthProvider()
 
-  // console.log(Formik)
+  function validateEmail(value: string) {
+    let error
+
+    if (!value) {
+      error = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      error = 'Invalid email address'
+      setAlertBoxMail(true)
+    } if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) || value.length == 0){
+      setAlertBoxMail(false)
+
+
+    }
+
+    return error
+  }
 
   return (
     <>
@@ -51,7 +66,7 @@ const SignIn: FC = () => {
                   }}
                   onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
                     setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2))
+                      JSON.stringify(values, null, 2)
                       setSubmitting(false)
                     }, 500)
                   }}
@@ -62,11 +77,16 @@ const SignIn: FC = () => {
                       name='email'
                       placeholder='email'
                       type='email'
+                      validate={validateEmail}
                       className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
             focus:ring-2 focus:ring-sky-300 focus:outline-none
             invalid:ring-2 '
                     />
-
+                    {alertBoxMail ? (
+                      <span className='text-red-600 font-roboto text-normal absolute translate-y-1 m-0 flex'>
+                        {'email address is invalid'}
+                      </span>
+                    ) : null}
                     <label htmlFor='password'></label>
                     <Field
                       id='password'
@@ -74,7 +94,7 @@ const SignIn: FC = () => {
                       placeholder='password'
                       type='password'
                       minLength={8}
-                      className='block w-full px-4 py-3 mt-5  rounded-md border border-gray-300 text-gray-600 transition duration-300
+                      className='block w-full px-4 py-3 mt-8  rounded-md border border-gray-300 text-gray-600 transition duration-300
               focus:ring-2 focus:ring-sky-300 focus:outline-none
               invalid:ring-2 '
                     />
