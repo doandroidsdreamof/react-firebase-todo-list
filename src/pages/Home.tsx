@@ -1,11 +1,22 @@
 import React, { useState, useEffect,FC } from 'react'
 
- const Home: FC  = () => {
+
+
+
+
+ const Home: FC  = ()   => {
+
+  
 
  
 
   return (
-             <div>homess</div>                    
+             <div>
+      
+
+
+
+             </div>                    
 
 
   )
