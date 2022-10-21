@@ -6,33 +6,31 @@ import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import FormWrapper from './layouts/FormWrapper'
 
-function App() {
+function App(): JSX.Element {
+
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Home />
-         
-          }
-        />
-        <Route path='/login' element={
-         <FormWrapper>
-         <SignIn />
-       </FormWrapper>
-        
-        } />
-        <Route
-          path='/register'
-          element={
-            <FormWrapper>
-              <SignUp />
-            </FormWrapper>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route
+            path='/login'
+            element={
+              <FormWrapper>
+                <SignIn />
+              </FormWrapper>
+            }
+          />
+          <Route
+            path='/register'
+            element={
+              <FormWrapper>
+                <SignUp />
+              </FormWrapper>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
   )
 }
 

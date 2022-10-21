@@ -1,10 +1,23 @@
 import React, { useState, useEffect,FC } from 'react'
 import { Link } from 'react-router-dom'
 import registerImage from '../assets/image/register.jpg'
-
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import * as Yup from 'yup';
+import {
+    createUserWithEmailAndPassword,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+  } from 'firebase/auth';
 
 
  const SignUp: FC = () => {
+    const [userData, setUserData] = useState(undefined); 
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+
   return (
     <div className="relative container m-auto   text-gray-500 ">
     <div className="m-auto space-y-8 md:w-8/12  max-h-fit  lg:w-eighty ">
