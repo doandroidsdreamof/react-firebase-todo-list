@@ -7,9 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 
+type props = {
+  alertBox: boolean;
 
-function LoginAlert({alertBox}: any) {
-    const [open, setOpen] = React.useState(false);
+}
+function LoginAlert ({alertBox}: props ) {
+    const [open, setOpen] = useState(false);
     useEffect(()=>{
         setOpen(alertBox)
 

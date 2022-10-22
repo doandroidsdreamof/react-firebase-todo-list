@@ -21,8 +21,8 @@ export const AuthProvider = ({ children }: child) => {
   const [user, setUser] = useState<AuthContextInterFace | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((firebaseUser: any) => {
-      setUser(firebaseUser);
+    const unsubscribe = auth.onAuthStateChanged((user: any) => {
+      setUser(user);
     });
 
     return unsubscribe;
