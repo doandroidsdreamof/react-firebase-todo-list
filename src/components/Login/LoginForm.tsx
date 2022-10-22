@@ -57,8 +57,6 @@ const LoginForm = () => {
   }
 
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
-    setSubmit(true)
-    if (submit == true) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
@@ -71,11 +69,10 @@ const LoginForm = () => {
           console.log('başarısız =>', errorMessage)
           setSubmit(false)
         })
-    }
+    
   }
 
-  console.log(submit)
-
+console.log(user)
 
   return (
     <Formik
