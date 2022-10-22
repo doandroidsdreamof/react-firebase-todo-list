@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext, FC, MouseEvent } from 'react'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import LoginGithubButton from './LoginGithubButton'
-import LoginGoogleButton from './LoginGoogleButton'
+import GithubButton from '../common/GithubButton'
+import GoogleButton from '../common/GoogleButton'
+import EmailValidError from './EmailValidError'
 import {
   GithubAuthProvider,
   signInWithPopup,
@@ -25,15 +26,18 @@ const LoginForm = () => {
   const [submit, setSubmit] = useState(false)
   const auth = getAuth()
   const user = useContext(AuthContext)
+  const loginPage = 'login';
 
 
-
+  
   function validateEmail(value: string) {
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     if (!value) {
       error = 'Required'
-      setSubmit(false)
+    }
+    if (emailValidation.test(value) || value.length === 0) {
+      setAlertBoxMail(false)
     } else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
@@ -63,6 +67,10 @@ const LoginForm = () => {
     setSubmit(true)
   }
 
+
+
+
+
   return (
     <Formik
       initialValues={{
@@ -85,11 +93,7 @@ const LoginForm = () => {
 focus:ring-2 focus:ring-sky-300 focus:outline-none
 invalid:ring-2 '
         />
-        {alertBoxMail ? (
-          <span className='text-red-600 font-roboto text-normal absolute translate-y-1 m-0 flex'>
-            {'email address is invalid'}
-          </span>
-        ) : null}
+        <EmailValidError validError={alertBoxMail} />
         <label htmlFor='password'></label>
         <input
           id='password'
@@ -103,10 +107,9 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
 invalid:ring-2 '
         />
         <label htmlFor='email'> </label>
-
         <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
-          <LoginGithubButton />
-          <LoginGoogleButton />
+          <GithubButton page={loginPage} />
+          <GoogleButton page={loginPage} />
         </div>
         <button
           className='w-full  py-3 px-6 rounded-md bg-sky-600
