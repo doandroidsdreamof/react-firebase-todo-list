@@ -11,6 +11,9 @@ import { getAuth } from 'firebase/auth'
 
 function App() {
   const user = useContext(AuthContext)
+  const register = 'register'
+  const login = 'login'
+
   useEffect(()=>{
 
   },[user])
@@ -28,7 +31,7 @@ function App() {
               user !== null ? (
                 <Home />
               ) : (
-                <FormWrapper>
+                <FormWrapper state={login}>
                   <SignIn />
                 </FormWrapper>
               )
@@ -37,7 +40,7 @@ function App() {
           <Route
             path='/login'
             element={
-              <FormWrapper>
+              <FormWrapper state={login}>
                 <SignIn />
               </FormWrapper>
             }
@@ -45,7 +48,7 @@ function App() {
           <Route
             path='/register'
             element={
-              <FormWrapper>
+              <FormWrapper state={register}>
                 <SignUp />
               </FormWrapper>
             }

@@ -25,7 +25,6 @@ const SignIn = () => {
 
   return (
     <>
-      <div className='container m-auto    text-gray-500 px-6  md:px-12 xl:px-40'>
         <LoginAlert alertBox={alertBox} />
         <div className='m-auto space-y-8   md:w-8/12 lg:w-onehundred'>
           <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-white shadow-md'>
@@ -48,7 +47,6 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-      </div>
     </>
   )
 }

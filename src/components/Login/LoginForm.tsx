@@ -26,10 +26,8 @@ const LoginForm = () => {
   const [submit, setSubmit] = useState(false)
   const auth = getAuth()
   const user = useContext(AuthContext)
-  const loginPage = 'login';
+  const loginPage = 'login'
 
-
-  
   function validateEmail(value: string) {
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
@@ -66,10 +64,6 @@ const LoginForm = () => {
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
     setSubmit(true)
   }
-
-
-
-
 
   return (
     <Formik
