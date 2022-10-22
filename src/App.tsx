@@ -15,8 +15,8 @@ function App() {
   },[])
 
 
-  const deneme = useContext(AuthContext)
-console.log(deneme)
+const deneme = useContext(AuthContext)
+console.log('App auth ==>',deneme)
 
   return (
     <AuthProvider>

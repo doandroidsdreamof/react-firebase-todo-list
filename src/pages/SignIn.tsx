@@ -2,6 +2,7 @@ import React, { useState, useEffect, FC, useContext } from 'react'
 import loginImage from '../assets/image/login3.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import LoginAlert from '../components/LoginAlert'
+import { AuthProvider,AuthContext } from '../context/AuthContext'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import {
   GithubAuthProvider,
@@ -9,6 +10,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   linkWithPopup,
+  getAuth
 } from 'firebase/auth'
 
 interface Values {
@@ -22,25 +24,52 @@ const SignIn: FC = () => {
   const [alertBox, setAlertBox] = useState(false)
   const [alertBoxMail, setAlertBoxMail] = useState(false)
   const navigate = useNavigate()
-
+  const auth = getAuth();
   // const googleProvider = new GoogleAuthProvider()
   // const githubProvider = new GithubAuthProvider()
+  const user = useContext(AuthContext)
 
-  function validateEmail(value: string) {
+
+  useEffect(()=>{
+
+  },[])
+
+
+  // mutlukuytuoglu@gmail.com
+
+   function validateEmail(value: string) {
     let error
-    const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+    const emailValidation =  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     if (!value) {
       error = 'Required'
-    } else if (emailValidation.test(value)) {
+
+    } else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
     }
-    if (emailValidation.test(value) || value.length == 0) {
+    else if (emailValidation.test(value) || value.length == 0) {
       setAlertBoxMail(false)
+      setEmail(value)
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('başarılı', user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('başarısız', errorMessage)
+      });
+  
     }
 
     return error
   }
+
+
+
+  console.log('sign in auth ==>',password)
+
 
   return (
     <>
@@ -87,12 +116,13 @@ const SignIn: FC = () => {
                       </span>
                     ) : null}
                     <label htmlFor='password'></label>
-                    <Field
+                    <input
                       id='password'
                       name='password'
                       placeholder='password'
                       type='password'
                       minLength={8}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                       className='block w-full px-4 py-3 mt-8  rounded-md border border-gray-300 text-gray-600 transition duration-300
               focus:ring-2 focus:ring-sky-300 focus:outline-none
               invalid:ring-2 '
