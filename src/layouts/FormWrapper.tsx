@@ -6,7 +6,7 @@ interface LoginRegisterProps {
 }
 
 const FormWrapper: FC<LoginRegisterProps> = (props) => {
-  console.log('here')
+
   return (
     <div className=' h-screen w-screen border-2 border-black  overflow-hidden flex justify-center bg-gray-200'>
       {props.state == 'login' ? (

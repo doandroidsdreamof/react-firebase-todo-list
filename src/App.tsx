@@ -14,9 +14,6 @@ function App() {
   const register = 'register'
   const login = 'login'
 
-  useEffect(()=>{
-
-  },[user])
 
 
 

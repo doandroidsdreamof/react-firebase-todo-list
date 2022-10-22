@@ -27,35 +27,30 @@ const LoginForm = () => {
   const auth = getAuth()
   const user = useContext(AuthContext)
   const loginPage = 'login'
+  
+
+  useEffect(()=>{
+
+  },[])
+
+  // mutlukuytuoglu@gmail.com
+
 
   function validateEmail(value: string) {
+    console.log(value)
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-    if (!value) {
+    if (!value || value.length === 0) {
       error = 'Required'
-    }
-    if (emailValidation.test(value) || value.length === 0) {
       setAlertBoxMail(false)
-    } else if (!emailValidation.test(value)) {
+    }
+    else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
     } else if (emailValidation.test(value) || value.length == 0) {
       setEmail(value)
       setAlertBoxMail(false)
-      if (submit === true) {
-        signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const user = userCredential.user
-            navigate('/')
-            // console.log('başarılı', user)
-          })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            console.log('başarısız', errorMessage)
-            setSubmit(false)
-          })
-      }
+
     }
 
     return error
@@ -63,7 +58,24 @@ const LoginForm = () => {
 
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
     setSubmit(true)
+    if (submit == true) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user
+          navigate('/')
+           console.log('başarılı =>', user)
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.log('başarısız =>', errorMessage)
+          setSubmit(false)
+        })
+    }
   }
+
+  console.log(submit)
+
 
   return (
     <Formik
@@ -109,6 +121,7 @@ invalid:ring-2 '
           className='w-full  py-3 px-6 rounded-md bg-sky-600
                           focus:bg-sky-700 active:bg-sky-500'
           onClick={handleFormEvent}
+          type='button'
         >
           <span className='text-white'>Continue</span>
         </button>
