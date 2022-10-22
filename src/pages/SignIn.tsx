@@ -53,7 +53,8 @@ const SignIn: FC = () => {
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('başarılı', user)
+        navigate('/')
+        // console.log('başarılı', user)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -68,7 +69,6 @@ const SignIn: FC = () => {
 
 
 
-  console.log('sign in auth ==>',password)
 
 
   return (

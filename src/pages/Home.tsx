@@ -1,4 +1,5 @@
-import React, { useState, useEffect,FC } from 'react'
+import React, { useState, useEffect, useContext,FC } from 'react'
+import { AuthContext } from '../context/AuthContext'
 
 
 
@@ -6,7 +7,9 @@ import React, { useState, useEffect,FC } from 'react'
 
  const Home: FC  = ()   => {
 
-  
+  const user = useContext(AuthContext)
+
+  console.log('HOME PAGE', user)
 
  
 
