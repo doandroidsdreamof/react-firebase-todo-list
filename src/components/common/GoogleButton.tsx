@@ -13,13 +13,13 @@ const GoogleButton: FC<PageProps> = (props) => {
   const navigate = useNavigate()
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    linkUserAccounts()
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
         const token = credential?.accessToken
         const user = result.user
-        console.log('google ok ==>', user)
-        linkUserAccounts()
+        // console.log('google ok ==>', user)
         navigate('/home')
       })
       .catch((error) => {
@@ -31,18 +31,20 @@ const GoogleButton: FC<PageProps> = (props) => {
       })
   }
 
+
+
   function linkUserAccounts() {
-    const current: any = auth.currentUser
-    linkWithPopup(current, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const user = result.user
-        console.log('google link', user)
-      })
-      .catch((error) => {
-        console.log('google not link', error)
-      })
-  }
+    const current: any = auth.currentUser;
+    linkWithPopup(current, provider).then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const user = result.user;
+      console.log('google link', user)
+
+    }).catch((error) => {
+      console.log('google not link', error) 
+
+    });    }
+
 
   return (
     <button

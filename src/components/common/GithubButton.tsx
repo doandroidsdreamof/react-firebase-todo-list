@@ -19,13 +19,13 @@ const GithubButton: FC<PageProps> = (props) => {
   const navigate = useNavigate()
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    linkUserAccounts()
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GithubAuthProvider.credentialFromResult(result)
         const token = credential?.accessToken
         const user = result.user
         console.log('github ok ==>', user)
-        linkUserAccounts()
         navigate('/home')
       })
       .catch((error) => {
@@ -38,7 +38,7 @@ const GithubButton: FC<PageProps> = (props) => {
   }
 
   function linkUserAccounts() {
-    const current: any = user;
+    const current: any = auth.currentUser;
     linkWithPopup(current, provider)
       .then((result) => {
         const credential = GithubAuthProvider.credentialFromResult(result)

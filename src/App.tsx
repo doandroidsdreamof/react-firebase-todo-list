@@ -20,11 +20,11 @@ function App() {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log('buras ************************', user)
+      console.log('app current user', user)
       const uid = user.uid;
       // ...
     } else {
-      console.log('buras sorun')
+      console.log('app current user not found')
 
     }
   });
