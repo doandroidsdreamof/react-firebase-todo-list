@@ -7,6 +7,8 @@ interface PageProps  {
 }
 const GithubButton: FC<PageProps> = (props) => {
 
+
+  // const githubProvider = new GithubAuthProvider()
   return (
     <button
       type='button'

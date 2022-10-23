@@ -50,6 +50,12 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
                                   focus:ring-2 focus:ring-sky-300 focus:outline-none
                                   invalid:ring-2 '
       />
+          <button
+      className='w-full py-3 px-6 rounded-md bg-sky-600
+                focus:bg-sky-700 active:bg-sky-500'
+    >
+      <span className='text-white'>Continue</span>
+    </button>
     </>
   )
 }

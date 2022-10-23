@@ -17,8 +17,7 @@ const SignIn = () => {
 
   
 
-  // const googleProvider = new GoogleAuthProvider()
-  // const githubProvider = new GithubAuthProvider()
+
 
   return (
     <>

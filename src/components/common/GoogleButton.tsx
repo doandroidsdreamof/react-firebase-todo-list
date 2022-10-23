@@ -5,6 +5,11 @@ interface PageProps {
 }
 
 const GoogleButton: FC<PageProps> = (props) => {
+
+  // const googleProvider = new GoogleAuthProvider()
+
+
+
   return (
     <button
       type='button'
