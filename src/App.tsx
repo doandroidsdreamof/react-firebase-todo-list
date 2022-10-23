@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, Suspense } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import './App.css'
 import SignIn from './pages/SignIn'
@@ -11,48 +11,53 @@ import { getAuth } from 'firebase/auth'
 
 function App() {
   const user = useContext(AuthContext)
+  const [loading,setLoading] = useState<boolean>(false)
   const register = 'register'
   const login = 'login'
 
+
+  useEffect(()=>{
+
+
+  },[])
 
 
 
 
   return (
-
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              user !== null ? (
-                <Home />
-              ) : (
-                <FormWrapper state={login}>
-                  <SignIn />
-                </FormWrapper>
-              )
-            }
-          />
-          <Route
-            path='/login'
-            element={
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            user  !== null ?(
+              <Home />
+            ) : (
               <FormWrapper state={login}>
-                <SignIn />
+                  <SignIn  />
               </FormWrapper>
-            }
-          />
-          <Route
-            path='/register'
-            element={
-              <FormWrapper state={register}>
-                <SignUp />
-              </FormWrapper>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+            )
+          }
+        />
 
+        <Route
+          path='/login'
+          element={
+            <FormWrapper state={login}>
+              <SignIn  />
+            </FormWrapper>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <FormWrapper state={register}>
+              <SignUp />
+            </FormWrapper>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

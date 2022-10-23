@@ -9,7 +9,6 @@ import LoginAlert from '../components/Login/LoginAlert'
 
 
 
-
 const SignIn = () => {
   const [alertBox, setAlertBox] = useState<boolean>(false)
   const user = useContext(AuthContext)

@@ -23,7 +23,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [alertBoxMail, setAlertBoxMail] = useState(false)
   const navigate = useNavigate()
-  const [submit, setSubmit] = useState(false)
   const auth = getAuth()
   const user = useContext(AuthContext)
   const loginPage = 'login'
@@ -37,7 +36,7 @@ const LoginForm = () => {
 
 
   function validateEmail(value: string) {
-    console.log(value)
+    // console.log(value)
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     if (!value || value.length === 0) {
@@ -67,12 +66,11 @@ const LoginForm = () => {
           const errorCode = error.code
           const errorMessage = error.message
           console.log('başarısız =>', errorMessage)
-          setSubmit(false)
         })
     
   }
 
-console.log(user)
+
 
   return (
     <Formik
