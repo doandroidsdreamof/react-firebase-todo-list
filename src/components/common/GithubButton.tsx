@@ -1,4 +1,6 @@
 import React, {FC} from 'react'
+import { AuthContext } from '../../context/AuthContext'
+import { GithubAuthProvider } from "firebase/auth";
 
 
 interface PageProps  {
