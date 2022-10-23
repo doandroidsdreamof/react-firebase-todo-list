@@ -1,4 +1,4 @@
-import React, { FC, useContext, MouseEvent } from 'react'
+import React, { FC,useState, useContext, MouseEvent } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import {
   GithubAuthProvider,
@@ -6,6 +6,7 @@ import {
   getAuth,
   getRedirectResult,
   linkWithPopup,
+  onAuthStateChanged
 } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
@@ -15,11 +16,13 @@ interface PageProps {
 const GithubButton: FC<PageProps> = (props) => {
   const provider = new GithubAuthProvider()
   const auth = getAuth()
-  const user = useContext(AuthContext)
+  const user: any = useContext(AuthContext)
   const navigate = useNavigate()
+  const [currentUser, setCurrentUser] = useState<any>({})
+
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    linkUserAccounts()
+    linkUser()
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GithubAuthProvider.credentialFromResult(result)
@@ -37,18 +40,20 @@ const GithubButton: FC<PageProps> = (props) => {
       })
   }
 
-  function linkUserAccounts() {
-    const current: any = auth.currentUser;
-    linkWithPopup(current, provider)
-      .then((result) => {
-        const credential = GithubAuthProvider.credentialFromResult(result)
-        const user = result.user
-        console.log(' link', user)
-      })
-      .catch((error) => {
-        console.log('not link', error)
-      })
-  }
+
+
+
+
+function linkUser(){
+  linkWithPopup(user, provider).then((result) => {
+    const credential = GithubAuthProvider.credentialFromResult(result);
+    const user = result.user;
+    console.log('github link',result)
+  }).catch((error) => {
+    console.log('github link',error)
+  });
+}
+
 
 
   return (

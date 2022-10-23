@@ -1,6 +1,6 @@
-import React, { FC, useContext, MouseEvent } from 'react'
+import React, { FC, useContext, MouseEvent,useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { GoogleAuthProvider, signInWithPopup, getAuth, getRedirectResult,linkWithPopup } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged,linkWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 interface PageProps {
   page: string
@@ -8,14 +8,15 @@ interface PageProps {
 
 const GoogleButton: FC<PageProps> = (props) => {
   const provider = new GoogleAuthProvider()
+  const [currentUser, setCurrentUser] = useState<any>({})
   const auth = getAuth()
-  const user = useContext(AuthContext)
+  const user: any = useContext(AuthContext)
   const navigate = useNavigate()
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    linkUserAccounts()
     signInWithPopup(auth, provider)
       .then((result) => {
+        linkUser()
         const credential = GoogleAuthProvider.credentialFromResult(result)
         const token = credential?.accessToken
         const user = result.user
@@ -33,17 +34,20 @@ const GoogleButton: FC<PageProps> = (props) => {
 
 
 
-  function linkUserAccounts() {
-    const current: any = auth.currentUser;
-    linkWithPopup(current, provider).then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const user = result.user;
-      console.log('google link', user)
 
-    }).catch((error) => {
-      console.log('google not link', error) 
 
-    });    }
+
+
+function linkUser(){
+  linkWithPopup(user, provider).then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const user = result.user;
+    console.log('link',result)
+  }).catch((error) => {
+    console.log('link',error)
+  });
+}
+
 
 
   return (

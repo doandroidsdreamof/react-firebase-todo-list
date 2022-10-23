@@ -18,18 +18,9 @@ function App() {
   const auth = getAuth();
 
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log('app current user', user)
-      const uid = user.uid;
-      // ...
-    } else {
-      console.log('app current user not found')
 
-    }
-  });
-
-  console.log(user)
+  
+  console.log('app current user', user)
 
 
 
