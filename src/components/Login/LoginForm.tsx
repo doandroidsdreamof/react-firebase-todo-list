@@ -31,7 +31,6 @@ const LoginForm = () => {
   useEffect(()=>{
 
   },[])
-
   // mutlukuytuoglu@gmail.com
 
 
@@ -60,7 +59,7 @@ const LoginForm = () => {
         .then((userCredential) => {
           const user = userCredential.user
           navigate('/')
-           console.log('başarılı =>', user)
+          //  console.log('başarılı =>', user)
         })
         .catch((error) => {
           const errorCode = error.code

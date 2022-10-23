@@ -10,15 +10,14 @@ import {MouseEvent} from 'react'
 
 
 const LogOutButton = () => {
+  const navigate = useNavigate()
 
 
 
 const handleClick = (e: MouseEvent<HTMLButtonElement>) =>{
+  navigate('/')
   return signOutUser()
 }
-
-
-
 
   return (
     <Button onClick={(e) => handleClick(e)}  variant='contained' disableElevation>

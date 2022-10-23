@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Suspense } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useContext, Suspense } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import './App.css'
 import SignIn from './pages/SignIn'
@@ -7,57 +7,38 @@ import Home from './pages/Home'
 import FormWrapper from './layouts/FormWrapper'
 import { AuthProvider, AuthContext } from './context/AuthContext'
 import { auth, db, storage } from './firebase'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import ProtectedRoute from './components/common/ProtectedRoute'
 
 function App() {
   const user = useContext(AuthContext)
-  const [loading,setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const register = 'register'
   const login = 'login'
 
-
-  useEffect(()=>{
-
-
-  },[])
-
-
-
+  console.log(user)
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            user  !== null ?(
-              <Home />
-            ) : (
-              <FormWrapper state={login}>
-                  <SignIn  />
-              </FormWrapper>
-            )
-          }
-        />
+    <Routes>
+      <Route
+        path='/'
+        element={
+          <FormWrapper state={login}>
+            <SignIn />
+          </FormWrapper>
+        }
+      />
 
-        <Route
-          path='/login'
-          element={
-            <FormWrapper state={login}>
-              <SignIn  />
-            </FormWrapper>
-          }
-        />
-        <Route
-          path='/register'
-          element={
-            <FormWrapper state={register}>
-              <SignUp />
-            </FormWrapper>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route path='/home' element={<Home />} />
+      <Route
+        path='/register'
+        element={
+          <FormWrapper state={register}>
+            <SignUp />
+          </FormWrapper>
+        }
+      />
+    </Routes>
   )
 }
 
