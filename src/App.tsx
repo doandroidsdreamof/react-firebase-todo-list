@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect, useContext, Suspense } from 'react'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
@@ -19,26 +19,35 @@ function App() {
   console.log(user)
 
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <FormWrapper state={login}>
-            <SignIn />
-          </FormWrapper>
-        }
-      />
+    <AuthProvider>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <FormWrapper state={login}>
+              <SignIn />
+            </FormWrapper>
+          }
+        />
 
-      <Route path='/home' element={<Home />} />
-      <Route
-        path='/register'
-        element={
-          <FormWrapper state={register}>
-            <SignUp />
-          </FormWrapper>
-        }
-      />
-    </Routes>
+        <Route
+          path='/home'
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <FormWrapper state={register}>
+              <SignUp />
+            </FormWrapper>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   )
 }
 

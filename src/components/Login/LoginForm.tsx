@@ -54,11 +54,13 @@ const LoginForm = () => {
     return error
   }
 
+  
+
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
-          navigate('/')
+          navigate('/home')
           //  console.log('başarılı =>', user)
         })
         .catch((error) => {
