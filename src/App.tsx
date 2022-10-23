@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import FormWrapper from './layouts/FormWrapper'
 import { AuthProvider, AuthContext } from './context/AuthContext'
 import { auth, db, storage } from './firebase'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged  } from 'firebase/auth'
 import ProtectedRoute from './components/common/ProtectedRoute'
 
 function App() {
@@ -15,8 +15,23 @@ function App() {
   const [loading, setLoading] = useState<boolean>(false)
   const register = 'register'
   const login = 'login'
+  const auth = getAuth();
+
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log('buras ************************', user)
+      const uid = user.uid;
+      // ...
+    } else {
+      console.log('buras sorun')
+
+    }
+  });
 
   console.log(user)
+
+
 
   return (
     <AuthProvider>

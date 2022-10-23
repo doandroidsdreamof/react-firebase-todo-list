@@ -1,20 +1,53 @@
-import React, { FC } from 'react'
+import React, { FC, useContext, MouseEvent } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { GoogleAuthProvider } from "firebase/auth";
-
+import { GoogleAuthProvider, signInWithPopup, getAuth, getRedirectResult,linkWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 interface PageProps {
   page: string
 }
 
 const GoogleButton: FC<PageProps> = (props) => {
+  const provider = new GoogleAuthProvider()
+  const auth = getAuth()
+  const user = useContext(AuthContext)
+  const navigate = useNavigate()
 
-  // const googleProvider = new GoogleAuthProvider()
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        const token = credential?.accessToken
+        const user = result.user
+        console.log('google ok ==>', user)
+        linkUserAccounts()
+        navigate('/home')
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        const email = error.customData.email
+        const credential = GoogleAuthProvider.credentialFromError(error)
+        console.log('google error ==>', error)
+      })
+  }
 
-
+  function linkUserAccounts() {
+    const current: any = auth.currentUser
+    linkWithPopup(current, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        const user = result.user
+        console.log('google link', user)
+      })
+      .catch((error) => {
+        console.log('google not link', error)
+      })
+  }
 
   return (
     <button
       type='button'
+      onClick={(e) => handleClick(e)}
       className='text-white justify-center  text-xs w-full bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-md   text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mb-2'
     >
       <svg

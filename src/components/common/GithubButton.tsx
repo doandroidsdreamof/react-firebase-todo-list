@@ -1,19 +1,60 @@
-import React, {FC} from 'react'
+import React, { FC, useContext, MouseEvent } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { GithubAuthProvider } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  signInWithPopup,
+  getAuth,
+  getRedirectResult,
+  linkWithPopup,
+} from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
-
-interface PageProps  {
-  page: string;
-
+interface PageProps {
+  page: string
 }
 const GithubButton: FC<PageProps> = (props) => {
+  const provider = new GithubAuthProvider()
+  const auth = getAuth()
+  const user = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GithubAuthProvider.credentialFromResult(result)
+        const token = credential?.accessToken
+        const user = result.user
+        console.log('github ok ==>', user)
+        linkUserAccounts()
+        navigate('/home')
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        const email = error.customData.email
+        const credential = GithubAuthProvider.credentialFromError(error)
+        console.log('github error ==>', error)
+      })
+  }
+
+  function linkUserAccounts() {
+    const current: any = user;
+    linkWithPopup(current, provider)
+      .then((result) => {
+        const credential = GithubAuthProvider.credentialFromResult(result)
+        const user = result.user
+        console.log(' link', user)
+      })
+      .catch((error) => {
+        console.log('not link', error)
+      })
+  }
 
 
-  // const githubProvider = new GithubAuthProvider()
   return (
     <button
       type='button'
+      onClick={(e) => handleClick(e)}
       className='text-white  justify-center   text-xs w-full bg-[#3f4d5f] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-md   text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/65 mr-2 mb-2'
     >
       <svg
