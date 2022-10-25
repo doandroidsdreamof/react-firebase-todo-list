@@ -18,9 +18,14 @@ function App() {
   const auth = getAuth();
 
 
+  useEffect(()=>{
+
+  },[])
+
+
 
   
-  console.log('app current user', user)
+
 
 
 

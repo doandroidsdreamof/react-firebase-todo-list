@@ -1,4 +1,4 @@
-import React, { FC,useState, useContext, MouseEvent } from 'react'
+import React, { FC, useState, useContext, MouseEvent } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import {
   GithubAuthProvider,
@@ -6,54 +6,41 @@ import {
   getAuth,
   getRedirectResult,
   linkWithPopup,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signInWithCredential,
 } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { User } from '@firebase/auth-types'
 
 interface PageProps {
   page: string
 }
 const GithubButton: FC<PageProps> = (props) => {
-  const provider = new GithubAuthProvider()
   const auth = getAuth()
   const user: any = useContext(AuthContext)
   const navigate = useNavigate()
-  const [currentUser, setCurrentUser] = useState<any>({})
-
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    linkUser()
-    signInWithPopup(auth, provider)
+    loginWithGithub()
+  }
+
+  function loginWithGithub() {
+    signInWithPopup(auth, new GithubAuthProvider())
       .then((result) => {
-        const credential = GithubAuthProvider.credentialFromResult(result)
-        const token = credential?.accessToken
-        const user = result.user
-        console.log('github ok ==>', user)
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        console.log(credential)
+
         navigate('/home')
       })
       .catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
         const email = error.customData.email
-        const credential = GithubAuthProvider.credentialFromError(error)
-        console.log('github error ==>', error)
-      })
+        console.log(error)
+      });
+
   }
-
-
-
-
-
-function linkUser(){
-  linkWithPopup(user, provider).then((result) => {
-    const credential = GithubAuthProvider.credentialFromResult(result);
-    const user = result.user;
-    console.log('github link',result)
-  }).catch((error) => {
-    console.log('github link',error)
-  });
-}
-
 
 
   return (

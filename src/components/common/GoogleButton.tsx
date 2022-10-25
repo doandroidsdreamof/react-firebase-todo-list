@@ -1,52 +1,55 @@
-import React, { FC, useContext, MouseEvent,useState } from 'react'
+import React, { FC, useContext, MouseEvent, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged,linkWithPopup } from 'firebase/auth'
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  onAuthStateChanged,
+  linkWithPopup,
+  linkWithCredential,
+} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 interface PageProps {
   page: string
 }
 
 const GoogleButton: FC<PageProps> = (props) => {
-  const provider = new GoogleAuthProvider()
-  const [currentUser, setCurrentUser] = useState<any>({})
   const auth = getAuth()
   const user: any = useContext(AuthContext)
   const navigate = useNavigate()
+  const annonUser: any = auth.currentUser
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    signInWithPopup(auth, provider)
+  const handleClick =  (e: MouseEvent<HTMLButtonElement>) => {
+    linkWithPopup(annonUser, new GoogleAuthProvider()).then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const user = result.user;
+
+    }).catch((error) => {
+
+      loginWithGoogle()
+    });
+
+
+  }
+
+  function loginWithGoogle() {
+    signInWithPopup(auth, new GoogleAuthProvider())
       .then((result) => {
-        linkUser()
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential?.accessToken
-        const user = result.user
-        // console.log('google ok ==>', user)
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        console.log(credential)
+
         navigate('/home')
       })
       .catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
         const email = error.customData.email
-        const credential = GoogleAuthProvider.credentialFromError(error)
-        console.log('google error ==>', error)
-      })
+        console.log(error)
+      });
   }
 
-
-
-
-
-
-
-function linkUser(){
-  linkWithPopup(user, provider).then((result) => {
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const user = result.user;
-    console.log('link',result)
-  }).catch((error) => {
-    console.log('link',error)
-  });
-}
+ 
 
 
 
