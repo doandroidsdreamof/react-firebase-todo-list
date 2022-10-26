@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, FC, MouseEvent } from 'react'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import GithubButton from '../common/GithubButton'
 import GoogleButton from '../common/GoogleButton'
 import EmailValidError from './EmailValidError'
 import {
@@ -31,7 +30,7 @@ const LoginForm = () => {
   useEffect(()=>{
 
   },[])
-
+  // mutlukuytuoglu@gmail.com
 
 
   function validateEmail(value: string) {
@@ -110,6 +109,9 @@ invalid:ring-2 '
         />
         <label htmlFor='email'> </label>
         <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
+        <GoogleButton page={loginPage} />
+        </div>
+   
         <button
           className='w-full  py-3 px-6 rounded-md bg-sky-600
                           focus:bg-sky-700 active:bg-sky-500'
@@ -118,7 +120,6 @@ invalid:ring-2 '
         >
           <span className='text-white'>Continue</span>
         </button>
-        </div>
       </Form>
     </Formik>
   )

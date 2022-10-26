@@ -1,7 +1,6 @@
 import React, { useState, useEffect, FC } from 'react'
 import RegisterImage from '../components/Register/RegisterImage'
 import LoginLink from '../components/Register/LoginLink'
-import GithubButton from '../components/common/GithubButton'
 import GoogleButton from '../components/common/GoogleButton'
 import RegisterForm from '../components/Register/RegisterForm'
 
@@ -18,7 +17,6 @@ const SignUp: FC = () => {
               <form className='space-y-5 '>
                 <RegisterForm />
                 <div className=' flex w-full mt-4 flex-row h-11 text-center justify-center'>
-                    <GithubButton page={registerPage} />
                     <GoogleButton page={registerPage} />
                   </div>
                 <LoginLink />
