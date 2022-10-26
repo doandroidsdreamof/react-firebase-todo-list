@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect, useContext, FC, MouseEvent } from 'react'
+import { Formik, Field, Form, FormikHelpers } from 'formik'
+import { AuthContext } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import EmailValidError from '../Login/EmailValidError'
+
+
+
+
+
+
 
 const RegisterForm = () => {
+  const [alertBoxMail, setAlertBoxMail] = useState(false)
+
+
+
   return (
     <>
       <div className='flex gap-x-3 space-y-5  flex-col lg:flex-row '>

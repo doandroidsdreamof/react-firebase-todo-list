@@ -12,13 +12,11 @@ const ProtectedRoute = ({ children }: child) => {
   const user = useContext(AuthContext)
   const auth = getAuth()
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return <Navigate to='/' />
-    }
-  })
+  if (!user) {
+    return <Navigate to='/' />;
+  }
+  return <>{children}</>;
+};
 
-  return <>{children}</>
-}
 
 export default ProtectedRoute

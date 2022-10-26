@@ -31,7 +31,7 @@ const LoginForm = () => {
   useEffect(()=>{
 
   },[])
-  // mutlukuytuoglu@gmail.com
+
 
 
   function validateEmail(value: string) {
