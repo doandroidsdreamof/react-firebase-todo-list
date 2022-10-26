@@ -110,9 +110,6 @@ invalid:ring-2 '
         />
         <label htmlFor='email'> </label>
         <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
-          <GithubButton page={loginPage} />
-          <GoogleButton page={loginPage} />
-        </div>
         <button
           className='w-full  py-3 px-6 rounded-md bg-sky-600
                           focus:bg-sky-700 active:bg-sky-500'
@@ -121,6 +118,7 @@ invalid:ring-2 '
         >
           <span className='text-white'>Continue</span>
         </button>
+        </div>
       </Form>
     </Formik>
   )
