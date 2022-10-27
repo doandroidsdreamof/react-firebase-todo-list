@@ -89,6 +89,7 @@ const LoginForm = () => {
           name='email'
           placeholder='email'
           type='email'
+          required
           validate={validateEmail}
           className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
@@ -101,6 +102,7 @@ invalid:ring-2 '
           name='password'
           placeholder='password'
           type='password'
+          required
           minLength={8}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           className='block w-full px-4 py-3 mt-8  rounded-md border border-gray-300 text-gray-600 transition duration-300
