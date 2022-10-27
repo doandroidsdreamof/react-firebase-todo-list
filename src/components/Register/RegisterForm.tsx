@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext, FC, FormEvent } from 'react'
+import React, { useState, useEffect, useContext, FC, FormEvent,MouseEvent } from 'react'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { AuthContext } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import EmailValidError from '../Login/EmailValidError'
 import { string } from 'yup'
+import { createUserWithEmailAndPassword, updateProfile,getAuth } from "firebase/auth";
+
 
 interface User {
   name: string
@@ -14,7 +16,8 @@ interface User {
 
 const RegisterForm = () => {
   const [alertBoxMail, setAlertBoxMail] = useState(false)
-  const [email, setEmail] = useState('')
+  const auth = getAuth();
+  const navigate = useNavigate()
   const [data, setData] = React.useState<User>({
     name: '',
     lastName: '',
@@ -31,9 +34,15 @@ const RegisterForm = () => {
     } else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
-      setEmail('')
+      setData(data=>({
+        ...data,
+          email: ''
+      }))
     } else if (emailValidation.test(value) || value.length == 0) {
-      setEmail(value)
+      setData(data=>({
+        ...data,
+          email: value
+      }))
       setAlertBoxMail(false)
     }
 
@@ -60,7 +69,27 @@ const RegisterForm = () => {
     }))
   }
 
-  console.log('Burası', data)
+  
+const handleSubmit = (e: MouseEvent<HTMLButtonElement>) =>{
+  e.preventDefault()
+  createUserWithEmailAndPassword(auth, data.email, data.password)
+  .then(async (res) => {
+    const user = res.user;
+    await updateProfile(user, {
+      displayName: data.name,
+    });
+    navigate('/home')
+  })
+  .catch((error) => {
+    console.log('register error =>', error)
+
+ 
+  });
+
+}
+
+
+  // console.log('Burası', data)
 
   return (
     <>
@@ -121,6 +150,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
       <button
         className='w-full py-3 px-6 rounded-md bg-sky-600
                 focus:bg-sky-700 active:bg-sky-500'
+                onClick={(e) => handleSubmit(e)} 
       >
         <span className='text-white'>Continue</span>
       </button>
