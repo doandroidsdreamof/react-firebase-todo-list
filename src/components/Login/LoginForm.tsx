@@ -30,11 +30,10 @@ const LoginForm = () => {
   useEffect(()=>{
 
   },[])
-  // mutlukuytuoglu@gmail.com
+
 
 
   function validateEmail(value: string) {
-    // console.log(value)
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     if (!value || value.length === 0) {

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import PasswordReset from './pages/PasswordReset'
 import Home from './pages/Home'
 import FormWrapper from './layouts/FormWrapper'
 import { AuthProvider, AuthContext } from './context/AuthContext'
@@ -23,7 +24,7 @@ function App() {
   },[])
 
 
-  console.log(user)
+
 
 
 
@@ -53,6 +54,14 @@ function App() {
           element={
             <FormWrapper state={register}>
               <SignUp />
+            </FormWrapper>
+          }
+        />
+               <Route
+          path='/reset'
+          element={
+            <FormWrapper state={register}>
+              <PasswordReset />
             </FormWrapper>
           }
         />

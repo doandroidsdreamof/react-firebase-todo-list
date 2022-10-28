@@ -89,7 +89,7 @@ const handleSubmit = (e: MouseEvent<HTMLButtonElement>) =>{
 }
 
 
-  // console.log('Burası', data)
+
 
   return (
     <>
