@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor:{
-        'bg-color': 'hsl(220, 26%, 14%) ',
-        'star': 'hsl(226, 100%, 66%)',
+        'bg-color': 'hsl(200, 13%, 9%)',
+        'bg-second': 'hsl(197, 11%, 12%)',
         'star-second': 'hsl(198, 93%, 60%)',
         'input-card':'hsl(197, 11%, 12%)',
         'input-bg': 'hsl(200, 13%, 9%)',
