@@ -24,10 +24,19 @@ function App() {
   },[])
 
 
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+
+      const uid = user.uid;
+      // console.log('değişmedi', user)
+    } else {
+      // console.log('değişti', user)
+      // ...
+    }
+  });
 
 
-
-
+console.log(user)
 
   return (
     <AuthProvider>

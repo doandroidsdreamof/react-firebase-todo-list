@@ -25,8 +25,8 @@ const GoogleButton: FC<PageProps> = (props) => {
       const user = result.user;
 
     }).catch((error) => {
-
       loginWithGoogle()
+      console.log(error)
     });
 
 
@@ -37,7 +37,7 @@ const GoogleButton: FC<PageProps> = (props) => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
-        console.log(credential)
+        // console.log(credential)
 
         navigate('/home')
       })
