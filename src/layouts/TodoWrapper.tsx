@@ -18,15 +18,18 @@ const TodoWrapper: FC<ChildrenProps> = (props) => {
 
   return (
     <div className={user === null ? 'hidden' : 'bg-bg-color h-screen  '}>
-      <div className='flex flex-col justify-center p-5 items-center gap-y-8'>
+      <div className='flex flex-col  justify-center p-5 items-center gap-y-8'>
         {props.TodoHead}
-        <div className='flex flex-row gap-3'>
-          {props.TextInput}
-        </div>
+       <div className=' w-screen justify-center flex   '>
+       {props.TextInput}
+       </div>
       </div>
-      <div className='w-fit h-fit flex  absolute bottom-5 left-5 '>
+      <div className='w-fit h-fit flex   absolute bottom-5 left-5 '>
         {props.LogOutButton}
         </div>
+        <div className="border-2 border-white"></div>
+
+
     </div>
   )
 }

@@ -46,6 +46,15 @@ module.exports = {
         'forty': '40%',
         'thirty': '30%',
       },
+      maxWidth: {
+        'onehundred': '100%',
+        'ninty': '90%',
+        'eighty': '80%',
+        'seventy': '70%',
+        'fifty': '50%',
+        'forty': '40%',
+        'thirty': '30%',
+      },
 
     },
   },

@@ -27,7 +27,6 @@ const grey = {
 
 const StyledInputElement = styled('input')(
   ({ theme }) => `
-  width: 320px;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
@@ -83,14 +82,17 @@ function TextInput(props: any) {
   }
 
   return (
-    <form className='flex flex-row gap-x-4' onSubmit={(e) => handleSubmit(e)}>
+
+    <form  className=' mx-auto flex flex-row justify-center gap-x-3 overflow-hidden' onSubmit={(e) => handleSubmit(e)}>
       <CustomInput
         onChange={(e) => handleInput(e.target.value)}
         aria-label='todo input'
         placeholder='Type something…'
+        className=' border-white w-onehundred sm:w-[350px] md:w-[470px]  '
       />
       <AddButton />;
     </form>
+
   )
 }
 
