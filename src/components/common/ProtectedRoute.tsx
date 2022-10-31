@@ -18,10 +18,10 @@ const ProtectedRoute = ({ children }: child) => {
     if (user) {
 
       const uid = user.uid;
-      console.log('değişmedi', user)
+      // console.log('değişmedi', user)
       setLogic(false)
     } else {
-      console.log('değişti', user)
+      // console.log('değişti', user)
       setLogic(true)
   
     }

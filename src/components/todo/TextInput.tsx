@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect, useContext, FC, FormEvent,MouseEvent } from 'react'
 import { useInput } from '@mui/base';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
@@ -67,8 +67,18 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
- function TextInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
+ function TextInput(props: any) {
+
+
+
+  const handleInput = async (value: string) =>{
+  props.getValues(value)
+
+  }
+
+
+
+  return <CustomInput onChange={(e) => handleInput(e.target.value)} aria-label="todo input" placeholder="Type something…" />;
 }
 
 export default TextInput
