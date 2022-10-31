@@ -28,21 +28,25 @@ type Todo = {
 const Home: FC = () => {
   const [input, getInput] = useState('')
   const [todos, setTodos] = useState([])
-  const user = useContext(AuthContext)
+  const user: any = useContext(AuthContext)
+  const auth: any = getAuth()
 
+  useEffect(()=>{
 
-  const addTodo = async (e: any) => {
-    e.preventDefault(e)
-    if (input === '') {
-      // console.log('Please enter a valid todo');
-      return;
+  },[])
+
+  const addTodo = async () => {
+    try {
+      const docRef = await addDoc(collection(db, 'Todo'), {
+        todo: input
+
+      });
+
+      console.log('Document written with ID: ', docRef.id)
+    } catch (e) {
+      console.error('Error adding document: ', e)
     }
-    await addDoc(collection(db, 'Todos'), {
-      text: input,
-    })
   }
-
-console.log(input)
 
   return (
     <>

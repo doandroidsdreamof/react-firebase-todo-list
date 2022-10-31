@@ -78,7 +78,7 @@ function TextInput(props: any) {
     setInput('')
     e.target[0].value = '' //reset input after submit
     props.getValues(input)
-    props.addTodo(e)
+    props.addTodo()
 
   }
 
