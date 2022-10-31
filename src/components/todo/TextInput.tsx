@@ -75,8 +75,11 @@ function TextInput(props: any) {
   }
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    setInput('')
+    e.target[0].value = '' //reset input after submit
     props.getValues(input)
     props.addTodo(e)
+
   }
 
   return (
@@ -86,8 +89,7 @@ function TextInput(props: any) {
         aria-label='todo input'
         placeholder='Type something…'
       />
-      <AddButton />
-      ;
+      <AddButton />;
     </form>
   )
 }

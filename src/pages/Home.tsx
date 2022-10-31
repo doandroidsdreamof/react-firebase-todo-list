@@ -30,17 +30,19 @@ const Home: FC = () => {
   const [todos, setTodos] = useState([])
   const user = useContext(AuthContext)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  /* @ts-ignore   */
 
   const addTodo = async (e: any) => {
     e.preventDefault(e)
+    if (input === '') {
+      // console.log('Please enter a valid todo');
+      return;
+    }
     await addDoc(collection(db, 'Todos'), {
       text: input,
     })
   }
 
-  console.log(db)
+console.log(input)
 
   return (
     <>
