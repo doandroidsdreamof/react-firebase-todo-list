@@ -11,9 +11,7 @@ const FormWrapper: FC<LoginRegisterProps> = (props) => {
 
   const user = useContext(AuthContext)
   
-useEffect(()=>{
 
-},[])
 
 
 

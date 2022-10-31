@@ -16,8 +16,6 @@ const TodoWrapper: FC<ChildrenProps> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
 
-  console.log(props)
-
   return (
     <div className={user === null ? 'hidden' : 'bg-bg-color h-screen  '}>
       <div className='flex flex-col justify-center p-5 items-center gap-y-8'>

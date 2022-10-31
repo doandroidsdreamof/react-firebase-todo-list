@@ -76,8 +76,7 @@ function TextInput(props: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     props.getValues(input)
-    alert('ok')
-    console.log(e)
+    props.addTodo(e)
   }
 
   return (

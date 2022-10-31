@@ -19,9 +19,6 @@ function App() {
   const auth = getAuth();
 
 
-  useEffect(()=>{
-
-  },[])
 
 
   onAuthStateChanged(auth, (user) => {
