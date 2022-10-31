@@ -12,10 +12,6 @@ const SignIn = () => {
   const [alertBox, setAlertBox] = useState<boolean>(false)
   const user = useContext(AuthContext)
 
-  useEffect(() => {
-
-
-  }, [])
 
   
 
