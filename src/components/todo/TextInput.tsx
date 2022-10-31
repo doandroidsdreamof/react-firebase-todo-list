@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext, FC, FormEvent,MouseEvent } from 'react'
-import { useInput } from '@mui/base';
-import { styled } from '@mui/system';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import React, { useState, useEffect, useContext, FC, FormEvent, MouseEvent } from 'react'
+import { useInput } from '@mui/base'
+import { styled } from '@mui/system'
+import { unstable_useForkRef as useForkRef } from '@mui/utils'
+import AddButton from './AddButton'
 
 const blue = {
   100: '#DAECFF',
@@ -9,7 +10,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
-};
+}
 
 const grey = {
   50: '#F3F6F9',
@@ -22,7 +23,7 @@ const grey = {
   700: '#3E5060',
   800: '#2D3843',
   900: '#1A2027',
-};
+}
 
 const StyledInputElement = styled('input')(
   ({ theme }) => `
@@ -47,38 +48,49 @@ const StyledInputElement = styled('input')(
     outline: 3px solid ${theme.palette.mode !== 'dark' ? blue[500] : blue[200]};
   }
 `,
-);
+)
 
 const CustomInput = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
-  const { getRootProps, getInputProps } = useInput(props);
+  const { getRootProps, getInputProps } = useInput(props)
 
-  const inputProps = getInputProps();
+  const inputProps = getInputProps()
 
   // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
-  inputProps.ref = useForkRef(inputProps.ref, ref);
+  inputProps.ref = useForkRef(inputProps.ref, ref)
 
   return (
     <div {...getRootProps()}>
       <StyledInputElement {...props} {...inputProps} />
     </div>
-  );
-});
+  )
+})
 
- function TextInput(props: any) {
-
-
-
-  const handleInput = async (value: string) =>{
-  props.getValues(value)
-
+function TextInput(props: any) {
+  const [input, setInput] = useState('')
+  const handleInput = async (value: string) => {
+    setInput(value)
+  }
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    props.getValues(input)
+    alert('ok')
+    console.log(e)
   }
 
-
-
-  return <CustomInput onChange={(e) => handleInput(e.target.value)} aria-label="todo input" placeholder="Type something…" />;
+  return (
+    <form className='flex flex-row gap-x-4' onSubmit={(e) => handleSubmit(e)}>
+      <CustomInput
+        onChange={(e) => handleInput(e.target.value)}
+        aria-label='todo input'
+        placeholder='Type something…'
+      />
+      <AddButton />
+      ;
+    </form>
+  )
 }
 
 export default TextInput

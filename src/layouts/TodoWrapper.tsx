@@ -24,7 +24,6 @@ const TodoWrapper: FC<ChildrenProps> = (props) => {
         {props.TodoHead}
         <div className='flex flex-row gap-3'>
           {props.TextInput}
-          {props.AddButton}
         </div>
       </div>
       <div className='w-fit h-fit flex  absolute bottom-5 left-5 '>
