@@ -1,12 +1,13 @@
 export interface Todosdata {
-  todo?: string
-  completed?: boolean
-  id?: string
+  todo?: string;
+  completed?: boolean;
+  id?: string;
 }
 
 export interface TodoWrapperChildren {
-  TodoHead: React.ReactNode
-  TextInput: React.ReactNode
-  AddButton: React.ReactNode
-  LogOutButton: React.ReactNode
+  TodoHead: React.ReactNode;
+  TextInput: React.ReactNode;
+  AddButton: React.ReactNode;
+  LogOutButton: React.ReactNode;
+  TodosData: Todosdata[];
 }

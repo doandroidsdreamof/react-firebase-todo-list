@@ -3,6 +3,8 @@ import { useInput } from '@mui/base'
 import { styled } from '@mui/system'
 import { unstable_useForkRef as useForkRef } from '@mui/utils'
 import AddButton from './AddButton'
+import { db } from '../../firebase'
+import { doc, deleteDoc, addDoc, collection } from 'firebase/firestore'
 
 const blue = {
   100: '#DAECFF',
@@ -72,27 +74,48 @@ function TextInput(props: any) {
   const handleInput = async (value: string) => {
     setInput(value)
   }
+
+  async function addTodo() {
+    if (input === '') {
+      return
+    }
+    try {
+      const docRef = await addDoc(collection(db, 'Todo'), {
+        todo: input,
+        completed: false,
+      })
+
+      // console.log('Document written with ID: ', docRef.id)
+    } catch (e) {
+      console.error('Error adding document: ', e)
+    }
+  }
+
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
+    if (input === '') {
+      return
+    }
     setInput('')
     e.target[0].value = '' //reset input after submit
-    props.getValues(input)
-    props.addTodo()
-
+    addTodo()
+    props.logic()
   }
 
   return (
-
-    <form  className='w-fit justify-around  mx-auto flex flex-row  gap-x-3 overflow-hidden' onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className='w-fit justify-around  mx-auto flex flex-row   gap-x-3 overflow-hidden'
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <CustomInput
-        onChange={(e) => handleInput(e.target.value)}
+        onChange={(e) => setInput(e.target.value)}
         aria-label='todo input'
         placeholder='Type something…'
         className='w-onehundred sm:w-[350px] md:w-[490px]  '
       />
       <AddButton />;
     </form>
-
   )
 }
 
