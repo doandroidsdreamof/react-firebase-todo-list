@@ -34,8 +34,7 @@ const StyledInputElement = styled('input')(
   font-weight: 400;
   line-height: 1.5;
   padding: 12px;
-  width: 320px;
-  border-radius: 12px;
+  border-radius: 10px;
   color: ${theme.palette.mode !== 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode !== 'dark' ? 'hsl(197, 11%, 12%)' : '#fff'};
   border: 1px solid ${theme.palette.mode !== 'dark' ? grey[700] : grey[200]};
@@ -114,7 +113,7 @@ function TextInput(props: any) {
         onChange={(e) => setInput(e.target.value)}
         aria-label='todo input'
         placeholder='Type something…'
-        className=' flex'
+        className='w-[320px] lg:w-[420px]'
       />
       <AddButton />
     </form>

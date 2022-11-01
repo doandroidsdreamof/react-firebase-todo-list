@@ -30,7 +30,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             {props.TodosData?.map((todos, index) => (
               <>
                 <TodoListBlocks>
-                  <p className='text-white font-medium font-roboto p-4 ' key={index}>
+                  <p className='text-white font-medium font-roboto p-4 line-clamp-1  ' key={index}>
                     {todos.todo}
                   </p>
                 </TodoListBlocks>
