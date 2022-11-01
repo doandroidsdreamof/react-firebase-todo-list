@@ -7,6 +7,7 @@ interface ChildrenProps {
   TextInput: React.ReactNode;
   AddButton: React.ReactNode;
   LogOutButton: React.ReactNode;
+  todos: [ todo: string, completed: boolean, id: string];
 
 
 
@@ -15,19 +16,22 @@ interface ChildrenProps {
 const TodoWrapper: FC<ChildrenProps> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
+  console.log('here =>', props.todos)
+
 
   return (
     <div className={user === null ? 'hidden' : 'bg-bg-color h-screen  '}>
       <div className='flex flex-col  justify-center p-5 items-center gap-y-8'>
         {props.TodoHead}
-       <div className=' w-screen justify-center flex   '>
+       <div className=' w-fit justify-center flex flex-col  '>
        {props.TextInput}
+       <div className=" border-white w-full"></div>
        </div>
       </div>
       <div className='w-fit h-fit flex   absolute bottom-5 left-5 '>
         {props.LogOutButton}
         </div>
-        <div className="border-2 border-white"></div>
+     
 
 
     </div>

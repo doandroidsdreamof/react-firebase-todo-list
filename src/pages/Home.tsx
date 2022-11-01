@@ -20,10 +20,10 @@ import AddButton from '../components/todo/AddButton'
 import TodoWrapper from '../layouts/TodoWrapper'
 import { type } from 'os'
 
-type Todo = {
-  name: string
-  title: string
-  done: boolean
+interface Todosdata {
+  todo?: string;
+  completed?: boolean;
+  id?: string;
 }
 
 const Home: FC = () => {
@@ -32,18 +32,15 @@ const Home: FC = () => {
   const user: any = useContext(AuthContext)
   const auth: any = getAuth()
 
-
   useEffect(() => {
-
     const q = query(collection(db, 'Todo'))
-    const todosArr:  any[] = []
+    const todosArr: Array<Todosdata> = [{ todo: '', completed: false, id: '' }]
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         todosArr.push({ ...doc.data(), id: doc.id })
       })
       setTodos(todosArr)
     })
-
   }, [])
 
   const addTodo = async () => {
@@ -61,11 +58,10 @@ const Home: FC = () => {
       console.error('Error adding document: ', e)
     }
   }
-  console.log(todos)
 
   const deleteTodo = async (id) => {
-    await deleteDoc(doc(db, 'todos', id));
-  };
+    await deleteDoc(doc(db, 'todos', id))
+  }
 
   return (
     <>
@@ -74,6 +70,7 @@ const Home: FC = () => {
         AddButton={<AddButton />}
         LogOutButton={<LogOutButton />}
         TextInput={<TextInput addTodo={addTodo} getValues={(e: string) => getInput(e)} />}
+        todos={todos}
       />
     </>
   )
