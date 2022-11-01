@@ -34,6 +34,7 @@ const StyledInputElement = styled('input')(
   font-weight: 400;
   line-height: 1.5;
   padding: 12px;
+  width: 320px;
   border-radius: 12px;
   color: ${theme.palette.mode !== 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode !== 'dark' ? 'hsl(197, 11%, 12%)' : '#fff'};
@@ -106,16 +107,16 @@ function TextInput(props: any) {
 
   return (
     <form
-      className='w-fit justify-around  mx-auto flex flex-row   gap-x-3 overflow-hidden'
+      className='   justify-center  mx-auto flex flex-row   gap-x-3 overflow-hidden'
       onSubmit={(e) => handleSubmit(e)}
     >
       <CustomInput
         onChange={(e) => setInput(e.target.value)}
         aria-label='todo input'
         placeholder='Type something…'
-        className='w-onehundred sm:w-[350px] md:w-[490px]  '
+        className=' flex'
       />
-      <AddButton />;
+      <AddButton />
     </form>
   )
 }

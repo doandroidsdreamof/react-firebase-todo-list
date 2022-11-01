@@ -21,12 +21,12 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const user = useContext(AuthContext)
 
   return (
-    <div className={user === null ? 'hidden ' : 'px-4 md:px-20 absolute w-onehundred overflow-hidden bg-bg-color min-h-screen  '}>
-      <div className='flex flex-col  justify-center p-5 items-center gap-y-8'>
+    <div className={user === null ? 'hidden ' : ' px-5 md:px-20 lg:px-48 absolute w-onehundred overflow-hidden bg-bg-color min-h-screen  '}>
+      <div className='flex flex-col  justify-center   items-center gap-y-8'>
         {props.TodoHead}
-        <div className=' w-full justify-center flex flex-col overflow-x-hidden  '>
+        <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
-          <div className='flex flex-col-reverse  w-full'>
+          <div className='flex flex-col-reverse items-center   w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>
                 <TodoListBlocks>
