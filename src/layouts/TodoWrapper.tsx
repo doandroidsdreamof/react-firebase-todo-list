@@ -26,7 +26,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
-          <div className='flex flex-col-reverse items-center   w-onehundred justify-center'>
+          <div className='flex flex-col-reverse items-center mb-4   w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>
                 <TodoListBlocks>

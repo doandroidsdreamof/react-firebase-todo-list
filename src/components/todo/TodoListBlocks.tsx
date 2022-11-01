@@ -19,7 +19,7 @@ const darkTheme = createTheme({
 
  function TodoListBlocks({children}) {
   return (
-    <Stack className='lg:w-eighty w-onehundred' spacing={2} sx={{ flexGrow: 1 }}>
+    <Stack className='lg:w-eighty w-onehundred ' spacing={2} sx={{ flexGrow: 1 }}>
     <ThemeProvider theme={darkTheme}>
       <AppBar position="static" color="primary" enableColorOnDark>
     

@@ -27,8 +27,8 @@ import { type } from 'os'
 const Home: FC = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
-  const [todos, setTodos] = useState<Todosdata[]>([{ todo: '', completed: false, id: '',date: ''}])
-  const todosArr: Array<Todosdata> = [{ todo: '', completed: false, id: '', date: '' }]
+  const [todos, setTodos] = useState<Todosdata[]>([{ }])
+  const todosArr: Array<Todosdata> = []
   const [logic,setLogic] = useState<boolean>(false) // to obverse databae changes
 
   useEffect(() => {
