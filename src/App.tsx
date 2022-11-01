@@ -20,7 +20,7 @@ function App() {
 
 
 
-
+/*
   onAuthStateChanged(auth, (user) => {
     if (user) {
 
@@ -31,9 +31,9 @@ function App() {
       // ...
     }
   });
+*/
 
 
-console.log(user)
 
   return (
     <AuthProvider>

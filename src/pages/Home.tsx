@@ -20,28 +20,14 @@ import AddButton from '../components/todo/AddButton'
 import TodoWrapper from '../layouts/TodoWrapper'
 import { type } from 'os'
 
-interface Todosdata {
-  todo?: string;
-  completed?: boolean;
-  id?: string;
-}
+
 
 const Home: FC = () => {
   const [input, getInput] = useState('')
-  const [todos, setTodos]: any[] = useState([])
-  const user: any = useContext(AuthContext)
-  const auth: any = getAuth()
+  const user = useContext(AuthContext)
+  const auth = getAuth()
 
-  useEffect(() => {
-    const q = query(collection(db, 'Todo'))
-    const todosArr: Array<Todosdata> = [{ todo: '', completed: false, id: '' }]
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        todosArr.push({ ...doc.data(), id: doc.id })
-      })
-      setTodos(todosArr)
-    })
-  }, [])
+  // console.log('here =>', todos)
 
   const addTodo = async () => {
     if (input === '') {
@@ -70,8 +56,8 @@ const Home: FC = () => {
         AddButton={<AddButton />}
         LogOutButton={<LogOutButton />}
         TextInput={<TextInput addTodo={addTodo} getValues={(e: string) => getInput(e)} />}
-        todos={todos}
       />
+      
     </>
   )
 }

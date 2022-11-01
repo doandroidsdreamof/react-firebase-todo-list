@@ -6,7 +6,7 @@ const AddButton = () => {
     <>
       <button
         type='submit'
-        className='  border ml-auto block  focus:outline-none hover:bg-gray-100  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-bg-second dark:text-white dark:border-[#3E5060] dark:hover:bg-gray-700 dark:hover:border-[#80BFFF]  dark:focus:ring-gray-700'
+        className='  border ml-auto block  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-bg-second text-white border-[#3E5060] hover:bg-gray-700 hover:border-[#80BFFF]  focus:ring-gray-700'
       >
         <MdOutlineAdd className='hover:rotate-90   ease-in duration-200' size={25} />
       </button>
