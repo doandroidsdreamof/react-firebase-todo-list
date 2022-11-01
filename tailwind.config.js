@@ -26,6 +26,7 @@ module.exports = {
         'card-dark': 'hsl(225, 8%, 10%)',
         'nav': 'hsl(240, 7%, 9%)',
         'explore-input': 'hsl(240, 1%, 20%)',
+        'todo': 'hsl(0, 0%, 15%)',
       },
       height: {
         'onehundred': '100%',

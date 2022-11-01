@@ -36,7 +36,7 @@ const StyledInputElement = styled('input')(
   padding: 12px;
   border-radius: 10px;
   color: ${theme.palette.mode !== 'dark' ? grey[300] : grey[900]};
-  background: ${theme.palette.mode !== 'dark' ? 'hsl(197, 11%, 12%)' : '#fff'};
+  background: ${theme.palette.mode !== 'dark' ? 'hsl(0, 0%, 15%)' : '#fff'};
   border: 1px solid ${theme.palette.mode !== 'dark' ? grey[700] : grey[200]};
   box-shadow: 0px 2px 2px ${theme.palette.mode !== 'dark' ? grey[900] : grey[50]};
 
