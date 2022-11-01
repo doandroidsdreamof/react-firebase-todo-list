@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        'roboto': ['Roboto', 'sans-serif'],
+      },
       backgroundColor:{
         'bg-color': 'hsl(200, 13%, 9%)',
         'bg-second': 'hsl(197, 11%, 12%)',
