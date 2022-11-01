@@ -83,6 +83,7 @@ function TextInput(props: any) {
       const docRef = await addDoc(collection(db, 'Todo'), {
         todo: input,
         completed: false,
+        date: new Date().toLocaleString(),
       })
 
       // console.log('Document written with ID: ', docRef.id)

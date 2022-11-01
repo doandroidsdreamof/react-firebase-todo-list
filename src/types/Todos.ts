@@ -2,6 +2,7 @@ export interface Todosdata {
   todo?: string;
   completed?: boolean;
   id?: string;
+  date?: any;
 }
 
 export interface TodoWrapperChildren {

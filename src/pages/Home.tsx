@@ -27,8 +27,8 @@ import { type } from 'os'
 const Home: FC = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
-  const [todos, setTodos] = useState<Todosdata[]>([{ todo: '', completed: false, id: '' }])
-  const todosArr: Array<Todosdata> = [{ todo: '', completed: false, id: '' }]
+  const [todos, setTodos] = useState<Todosdata[]>([{ todo: '', completed: false, id: '',date: ''}])
+  const todosArr: Array<Todosdata> = [{ todo: '', completed: false, id: '', date: '' }]
   const [logic,setLogic] = useState<boolean>(false) // to obverse databae changes
 
   useEffect(() => {
@@ -42,16 +42,24 @@ const Home: FC = () => {
       todosArr.push({ id: doc.id, ...doc.data() })
       setLogic(true)
     })
-    setTodos(todosArr)
+    setTodos(todosArr.sort(function(a,b): any{
+      return a.date.localeCompare(b.date)
+}))
   }
 
-  // console.log('here *******', todos)
 
   
 
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, 'todos', id))
   }
+
+
+  
+console.log(todos)
+
+
+
 
   return (
     <>

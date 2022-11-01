@@ -19,6 +19,8 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
 
+
+
   return (
     <div className={user === null ? 'hidden ' : 'absolute w-screen bg-bg-color min-h-screen  '}>
       <div className='flex flex-col  justify-center p-5 items-center gap-y-8'>
@@ -34,7 +36,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
    
         </div>
       </div>
-      <div className='w-fit h-fit flex  bottom-5  left-5 '>
+      <div className='w-fit h-fit flex  mt-auto absolute bottom-5  left-5 '>
         {props.LogOutButton}
       </div>
     </div>
