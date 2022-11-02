@@ -41,11 +41,11 @@ function TopNavBar(props: Props) {
     setMobileOpen(!mobileOpen)
   }
   const handleNavigation = async (e) => {
-    switch (e.target.innerText) {
-      case 'Home':
+    switch (e.target.innerText.toLowerCase()) {
+      case 'home':
         navigate('/home')
         break
-      case 'Profile':
+      case 'profile':
         navigate('/profile')
         break
     }
@@ -92,9 +92,9 @@ function TopNavBar(props: Props) {
             >
               TODOS
             </Typography>
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Box  sx={{ display: { xs: 'none', sm: 'block' } }}>
               {navItems.map((item) => (
-                <Button key={item} sx={{ color: '#fff' }}>
+                <Button onClick={(e) => handleNavigation(e)}  key={item} sx={{ color: '#ffffff' }}>
                   {item}
                 </Button>
               ))}
