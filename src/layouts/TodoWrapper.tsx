@@ -4,6 +4,8 @@ import { AuthContext } from '../context/AuthContext'
 import { db } from '../firebase'
 import { TodoWrapperChildren } from '../types/Todos'
 import TodoListBlocks from '../components/todo/TodoListBlocks'
+import EditButton from '../components/todo/EditButton'
+import DeleteButton from '../components/todo/DeleteButton'
 import {
   doc,
   setDoc,
@@ -21,18 +23,29 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const user = useContext(AuthContext)
 
   return (
-    <div className={user === null ? 'hidden ' : ' px-5 md:px-20 lg:px-48 absolute w-onehundred overflow-hidden bg-bg-color min-h-screen  '}>
+    <div
+      className={
+        user === null
+          ? 'hidden '
+          : ' px-5 md:px-20 lg:px-48 absolute w-onehundred overflow-hidden bg-bg-color min-h-screen  '
+      }
+    >
       <div className='flex flex-col  justify-center   items-center gap-y-8'>
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
-          <div className='flex flex-col-reverse items-center mb-4   w-onehundred justify-center'>
+          <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>
                 <TodoListBlocks>
-                  <p className='text-white font-medium font-roboto p-4 line-clamp-1 w-ninty ' key={index}>
+                  <span
+                    className='text-white inline font-medium text-ellipsis truncate  font-roboto p-4  w-ninty '
+                    key={index}
+                  >
                     {todos.todo}
-                  </p>
+                  </span>
+                  <EditButton />
+                  <DeleteButton />
                 </TodoListBlocks>
               </>
             ))}

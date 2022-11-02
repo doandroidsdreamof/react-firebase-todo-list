@@ -15,7 +15,6 @@ import {
   updateDoc,
   deleteDoc,
   orderBy,
-  
 } from 'firebase/firestore'
 import LogOutButton from '../components/Login/LogOutButton'
 import TodoHead from '../components/todo/TodoHead'
@@ -27,9 +26,9 @@ import { type } from 'os'
 const Home: FC = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
-  const [todos, setTodos] = useState<Todosdata[]>([{ }])
+  const [todos, setTodos] = useState<Todosdata[]>([{}])
   const todosArr: Array<Todosdata> = []
-  const [logic,setLogic] = useState<boolean>(false) // to obverse databae changes
+  const [logic, setLogic] = useState<boolean>(false) // to obverse databae changes
 
   useEffect(() => {
     getData()
@@ -42,24 +41,18 @@ const Home: FC = () => {
       todosArr.push({ id: doc.id, ...doc.data() })
       setLogic(true)
     })
-    setTodos(todosArr.sort(function(a,b): any{
-      return a.date.localeCompare(b.date)
-}))
+    setTodos(
+      todosArr.sort(function (a, b): any {
+        return a.date.localeCompare(b.date)
+      }),
+    )
   }
-
-
-  
 
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, 'todos', id))
   }
 
-
-  
-console.log(todos)
-
-
-
+  console.log(todos)
 
   return (
     <>
@@ -67,7 +60,7 @@ console.log(todos)
         TodoHead={<TodoHead />}
         AddButton={<AddButton />}
         LogOutButton={<LogOutButton />}
-        TextInput={<TextInput logic={(e: boolean)=> setLogic(!logic)} />}
+        TextInput={<TextInput logic={(e: boolean) => setLogic(!logic)} />}
         TodosData={todos}
       />
     </>

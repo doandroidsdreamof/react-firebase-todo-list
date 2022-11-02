@@ -21,15 +21,11 @@ const darkTheme = createTheme({
 
 function TodoListBlocks({ children }) {
   return (
-    <Stack className='lg:w-eighty w-onehundred flex flex-row ' spacing={2} sx={{ flexGrow: 1 }}>
+    <Stack className='lg:w-eighty w-onehundred ' spacing={2} sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
         <AppBar position='static' color='primary' enableColorOnDark></AppBar>
-        <AppBar position='static' color='primary'>
-          {children}
-          <div className='flex '>
-            <EditButton />
-            <DeleteButton />
-          </div>
+        <AppBar className=' rounded-lg ' position='static' color='primary'>
+          <div className='flex flex-row gap-x-1 '>{children}</div>
         </AppBar>
       </ThemeProvider>
     </Stack>
