@@ -23,6 +23,11 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
   const [modal, setModal] = useState<boolean>(false)
+  const [singleTodo, passSingleTodo] = useState<string>('')
+
+  const handleSingleTodo = async (e) => {
+    passSingleTodo(e.todo)
+  }
 
   return (
     <div
@@ -36,8 +41,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
-          <ModalDelete open={modal} closeModal={(e) => setModal(e)} />
-
+          <ModalDelete singleTodo={singleTodo} open={modal} closeModal={(e) => setModal(e)} />
           <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>
@@ -48,8 +52,12 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
                   >
                     {todos.todo}
                   </span>
-                  <EditButton />
-                  <DeleteButton openModal={(e) => setModal(e)} />
+                  <button>
+                    <EditButton />
+                  </button>
+                  <button onClick={(e) => handleSingleTodo(todos)}>
+                    <DeleteButton openModal={(e) => setModal(e)} />
+                  </button>
                 </TodoListBlocks>
               </>
             ))}

@@ -17,7 +17,7 @@ function ModalDelete(props: any) {
   }
 
   const handleClose = () => {
-     props.closeModal(false)
+    props.closeModal(false)
   }
 
   return (
@@ -29,11 +29,14 @@ function ModalDelete(props: any) {
         onClose={handleClose}
         aria-labelledby='responsive-dialog-title'
       >
-        <DialogTitle className='rounded-sm' id='responsive-dialog-title'>{"Do you really want to delete the todo?"}</DialogTitle>
+        <DialogTitle className='rounded-sm' id='responsive-dialog-title'>
+          {'Do you really want to delete the todo?'}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            <div className='flex flex-wrap'>
+              <p className='text-justify'> {props.singleTodo}</p>
+            </div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -44,8 +47,6 @@ function ModalDelete(props: any) {
             Yes
           </Button>
         </DialogActions>
-    
-      
       </Dialog>
     </div>
   )
