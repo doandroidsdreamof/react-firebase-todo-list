@@ -20,7 +20,7 @@ const SignIn = () => {
     <>
       <LoginAlert alertBox={alertBox} />
       <div className={ 'm-auto space-y-8   md:w-8/12 lg:w-onehundred'}>
-        <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-white shadow-md'>
+        <div className='rounded-xl  bg-opacity-50 backdrop-blur-2xl bg-gray-800 shadow-md'>
           <div className='lg:grid lg:grid-cols-2'>
             <div className='rounded-lg lg:block' hidden>
               <img
@@ -30,7 +30,7 @@ const SignIn = () => {
               />
             </div>
             <div className='p-6 sm:p-10 space-y-4'>
-              <h2 className='mb-8 text-2xl text-cyan-900 font-bold'>Sign in to your account</h2>
+              <h2 className='mb-8 text-2xl text-white font-bold'>Sign in to your account</h2>
               <LoginForm />
               <div className='flex   border-t flex-row justify-center  items-center'>
                 <RegisterLink />
