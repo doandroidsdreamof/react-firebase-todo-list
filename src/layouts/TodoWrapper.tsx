@@ -1,23 +1,25 @@
-import React, { useState, useEffect, useContext, FC, FormEvent, MouseEvent } from 'react'
+import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import { AuthContext } from '../context/AuthContext'
-import { db } from '../firebase'
-import { TodoWrapperChildren ,singleTodo} from '../types/Todos'
-import TodoListBlocks from '../components/todo/TodoListBlocks'
-import EditButton from '../components/todo/EditButton'
-import DeleteButton from '../components/todo/DeleteButton'
 import {
-  doc,
-  setDoc,
-  Timestamp,
   addDoc,
   collection,
-  query,
-  onSnapshot,
-  updateDoc,
   deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  setDoc,
+  Timestamp,
+  updateDoc,
 } from 'firebase/firestore'
+
+import DeleteButton from '../components/todo/DeleteButton'
+import EditButton from '../components/todo/EditButton'
 import ModalDelete from '../components/todo/ModalDelete'
+import TodoListBlocks from '../components/todo/TodoListBlocks'
+import TopNavBar from '../components/todo/TopNavBar'
+import { AuthContext } from '../context/AuthContext'
+import { db } from '../firebase'
+import { singleTodo,TodoWrapperChildren } from '../types/Todos'
 
 const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const auth = getAuth()
@@ -25,10 +27,6 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const [modal, setModal] = useState<boolean>(false)
   const [singleTodo, passSingleTodo] = useState<singleTodo>({todo: '',id: ''})
 
-
-  useEffect(()=>{
-
-  },[])
 
   const handleSingleTodo = async (e) => {
     passSingleTodo({todo:e.todo, id: e.id})
