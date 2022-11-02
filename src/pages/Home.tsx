@@ -1,27 +1,28 @@
-import React, { useState, useEffect, useContext, FC, FormEvent, MouseEvent } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import { db } from '../firebase'
-import { Todosdata } from '../types/Todos'
 import {
-  doc,
-  setDoc,
-  Timestamp,
   addDoc,
   collection,
-  getDocs,
-  query,
-  onSnapshot,
-  updateDoc,
   deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
   orderBy,
+  query,
+  setDoc,
+  Timestamp,
+  updateDoc,
 } from 'firebase/firestore'
-import LogOutButton from '../components/Login/LogOutButton'
-import TodoHead from '../components/todo/TodoHead'
-import TextInput from '../components/todo/TextInput'
-import AddButton from '../components/todo/AddButton'
-import TodoWrapper from '../layouts/TodoWrapper'
 import { type } from 'os'
+
+import LogOutButton from '../components/Login/LogOutButton'
+import AddButton from '../components/todo/AddButton'
+import TextInput from '../components/todo/TextInput'
+import TodoHead from '../components/todo/TodoHead'
+import { AuthContext } from '../context/AuthContext'
+import { db } from '../firebase'
+import TodoWrapper from '../layouts/TodoWrapper'
+import { Todosdata } from '../types/Todos'
 
 const Home: FC = () => {
   const user = useContext(AuthContext)

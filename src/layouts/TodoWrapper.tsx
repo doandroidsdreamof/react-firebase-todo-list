@@ -47,6 +47,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
           : ' px-5 md:px-20 lg:px-48 absolute w-onehundred overflow-hidden bg-bg-color min-h-screen  '
       }
     >
+      <TopNavBar/>
       <div className='flex flex-col  justify-center   items-center gap-y-8'>
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
