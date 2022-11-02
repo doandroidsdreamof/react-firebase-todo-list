@@ -9,7 +9,6 @@ export interface TodoWrapperChildren {
   TodoHead: React.ReactNode;
   TextInput: React.ReactNode;
   AddButton: React.ReactNode;
-  LogOutButton: React.ReactNode;
   logic:any;
   TodosData: Todosdata[];
 }

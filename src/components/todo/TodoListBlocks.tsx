@@ -27,7 +27,7 @@ function TodoListBlocks({ children }) {
       <ThemeProvider theme={darkTheme}>
         <AppBar position='static' color='primary' enableColorOnDark></AppBar>
         <AppBar className=' rounded-lg ' position='static' color='primary'>
-          <div className='flex flex-row gap-x-1 '>{children}</div>
+          <div className='flex flex-row gap-x-1 p-2'>{children}</div>
         </AppBar>
       </ThemeProvider>
     </Stack>

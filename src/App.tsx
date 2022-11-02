@@ -1,9 +1,9 @@
-import React, { useContext,useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged  } from 'firebase/auth'
-import { Route,Routes } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import ProtectedRoute from './components/common/ProtectedRoute'
-import { AuthContext,AuthProvider } from './context/AuthContext'
+import { AuthContext, AuthProvider } from './context/AuthContext'
 import FormWrapper from './layouts/FormWrapper'
 import Home from './pages/Home'
 import PasswordReset from './pages/PasswordReset'
@@ -15,26 +15,21 @@ import { auth, db, storage } from './firebase'
 function App() {
   const user = useContext(AuthContext)
   const [loading, setLoading] = useState<boolean>(false)
+  const [routerLogic, setRouterLogic] = useState<boolean>(false)
   const register = 'register'
   const login = 'login'
-  const auth = getAuth();
+  const auth = getAuth()
 
-
-
-/*
   onAuthStateChanged(auth, (user) => {
     if (user) {
-
-      const uid = user.uid;
-      // console.log('değişmedi', user)
+      const uid = user.uid
+      console.log('🚀 ~ file: App.tsx ~ line 28 ~ onAuthStateChanged ~ uid', user)
+      setRouterLogic(true)
     } else {
-      // console.log('değişti', user)
-      // ...
+      console.log('değişti', user)
+      setRouterLogic(false)
     }
-  });
-*/
-
-
+  })
 
   return (
     <AuthProvider>
@@ -46,8 +41,8 @@ function App() {
               <SignIn />
             </FormWrapper>
           }
-        />Home
-
+        />
+        Home
         <Route
           path='/home'
           element={
@@ -56,14 +51,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-              <Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
-              </ProtectedRoute>
-          }
-        />
+        {routerLogic !== false ? <Route path='/profile' element={<Profile />} /> : <Route path='/profile' element={<></>} />}
         <Route
           path='/register'
           element={
@@ -72,7 +60,7 @@ function App() {
             </FormWrapper>
           }
         />
-               <Route
+        <Route
           path='/reset'
           element={
             <FormWrapper state={register}>

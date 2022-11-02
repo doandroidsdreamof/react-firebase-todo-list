@@ -60,7 +60,6 @@ const Home: FC = () => {
       <TodoWrapper
         TodoHead={<TodoHead />}
         AddButton={<AddButton />}
-        LogOutButton={<LogOutButton />}
         TextInput={<TextInput logic={(e: boolean) => setLogic(!logic)} />}
         TodosData={todos}
         logic={(e) => setLogic(e)}

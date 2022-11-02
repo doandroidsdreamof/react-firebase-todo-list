@@ -11,12 +11,24 @@ type child = {
 }
 
 const ProtectedRoute = ({ children }: child) => {
-  console.log("🚀 ~ file: ProtectedRoute.tsx ~ line 14 ~ ProtectedRoute ~ children", children)
   const user = useContext(AuthContext)
   const auth = getAuth()
   const [logic,setLogic] = useState(false)
 
-  if (!user) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+
+      const uid = user.uid;
+      // console.log('değişmedi', user)
+      setLogic(false)
+    } else {
+      // console.log('değişti', user)
+      setLogic(true)
+  
+    }
+  });
+
+  if (!user && logic === true) {
     return <Navigate to='/' />;
   }else{
     return <>{children}</>;

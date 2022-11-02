@@ -61,7 +61,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
                     className='text-white inline font-medium text-ellipsis truncate  font-roboto p-4  w-ninty '
                     key={index}
                   >
-                    {todos.todo}
+                    {/* {todos.todo} */}
                   </span>
                   <button>
                     <EditButton />
@@ -74,9 +74,6 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             ))}
           </div>
         </div>
-      </div>
-      <div className='w-fit h-fit flex  mt-auto absolute bottom-5  left-5 '>
-        {props.LogOutButton}
       </div>
     </div>
   )
