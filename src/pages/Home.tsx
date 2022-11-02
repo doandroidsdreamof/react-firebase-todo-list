@@ -32,6 +32,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     getData()
+
   }, [logic])
 
   async function getData() {
@@ -41,10 +42,11 @@ const Home: FC = () => {
       todosArr.push({ id: doc.id, ...doc.data() })
       setLogic(true)
     })
+    todosArr.shift()
     setTodos(
       todosArr.sort(function (a, b): any {
         return a.date.localeCompare(b.date)
-      }),
+      }) 
     )
   }
 

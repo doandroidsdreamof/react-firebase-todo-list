@@ -17,10 +17,12 @@ import {
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore'
+import ModalDelete from '../components/todo/ModalDelete'
 
 const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
+  const [modal, setModal] = useState<boolean>(false)
 
   return (
     <div
@@ -34,6 +36,8 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
+          <ModalDelete open={modal} closeModal={(e) => setModal(e)} />
+
           <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>
@@ -45,7 +49,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
                     {todos.todo}
                   </span>
                   <EditButton />
-                  <DeleteButton />
+                  <DeleteButton openModal={(e) => setModal(e)} />
                 </TodoListBlocks>
               </>
             ))}
