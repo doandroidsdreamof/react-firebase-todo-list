@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext, FC, MouseEvent } from 'react'
-import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { AuthContext } from '../../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
-import GoogleButton from '../common/GoogleButton'
-import EmailValidError from './EmailValidError'
+import React, { FC, MouseEvent,useContext, useEffect, useState } from 'react'
 import {
-  GithubAuthProvider,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  linkWithPopup,
   getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  linkWithPopup,
+  signInWithEmailAndPassword,
+  signInWithPopup,
 } from 'firebase/auth'
+import { Field, Form, Formik, FormikHelpers } from 'formik'
+import { useNavigate } from 'react-router-dom'
+
+import { AuthContext } from '../../context/AuthContext'
+import GoogleButton from '../common/GoogleButton'
+
+import EmailValidError from './EmailValidError'
 
 interface Values {
   password: string

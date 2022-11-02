@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, FC, FormEvent,MouseEvent } from 'react'
-import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { AuthContext } from '../../context/AuthContext'
+import React, { FC, FormEvent,MouseEvent,useContext, useEffect, useState } from 'react'
+import { createUserWithEmailAndPassword, getAuth,updateProfile } from 'firebase/auth';
+import { Field, Form, Formik, FormikHelpers } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import EmailValidError from '../Login/EmailValidError'
 import { string } from 'yup'
-import { createUserWithEmailAndPassword, updateProfile,getAuth } from "firebase/auth";
+
+import { AuthContext } from '../../context/AuthContext'
+import EmailValidError from '../Login/EmailValidError'
 
 
 interface User {

@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useContext,useEffect, useState } from 'react'
+import { getAuth, onAuthStateChanged  } from 'firebase/auth'
+import { Route,Routes } from 'react-router-dom'
+
+import ProtectedRoute from './components/common/ProtectedRoute'
+import { AuthContext,AuthProvider } from './context/AuthContext'
+import FormWrapper from './layouts/FormWrapper'
+import Home from './pages/Home'
+import PasswordReset from './pages/PasswordReset'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import PasswordReset from './pages/PasswordReset'
-import Home from './pages/Home'
-import FormWrapper from './layouts/FormWrapper'
-import { AuthProvider, AuthContext } from './context/AuthContext'
 import { auth, db, storage } from './firebase'
-import { getAuth, onAuthStateChanged  } from 'firebase/auth'
-import ProtectedRoute from './components/common/ProtectedRoute'
 
 function App() {
   const user = useContext(AuthContext)

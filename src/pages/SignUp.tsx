@@ -1,8 +1,9 @@
-import React, { useState, useEffect, FC } from 'react'
-import RegisterImage from '../components/Register/RegisterImage'
-import LoginLink from '../components/Register/LoginLink'
+import React, { FC,useEffect, useState } from 'react'
+
 import GoogleButton from '../components/common/GoogleButton'
+import LoginLink from '../components/Register/LoginLink'
 import RegisterForm from '../components/Register/RegisterForm'
+import RegisterImage from '../components/Register/RegisterImage'
 
 
 const SignUp: FC = () => {

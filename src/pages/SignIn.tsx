@@ -1,12 +1,13 @@
-import React, { useState, useEffect, FC, useContext } from 'react'
-import loginImage from '../assets/image/login3.jpg'
+import React, { FC, useContext,useEffect, useState } from 'react'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Link } from 'react-router-dom'
+
+import loginImage from '../assets/image/login3.jpg'
+import LoginAlert from '../components/Login/LoginAlert'
 import LoginForm from '../components/Login/LoginForm'
-import { AuthContext } from '../context/AuthContext'
 import RegisterLink from '../components/Login/RegisterLink'
 import ResetPassword from '../components/Login/ResetPassword'
-import LoginAlert from '../components/Login/LoginAlert'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { AuthContext } from '../context/AuthContext'
 
 const SignIn = () => {
   const [alertBox, setAlertBox] = useState<boolean>(false)

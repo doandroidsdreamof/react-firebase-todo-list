@@ -1,14 +1,15 @@
-import React, { FC, useContext, MouseEvent, useState } from 'react'
-import { AuthContext } from '../../context/AuthContext'
+import React, { FC, MouseEvent, useContext, useState } from 'react'
 import {
-  GoogleAuthProvider,
-  signInWithPopup,
   getAuth,
-  onAuthStateChanged,
-  linkWithPopup,
+  GoogleAuthProvider,
   linkWithCredential,
+  linkWithPopup,
+  onAuthStateChanged,
+  signInWithPopup,
 } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+
+import { AuthContext } from '../../context/AuthContext'
 interface PageProps {
   page: string
 }

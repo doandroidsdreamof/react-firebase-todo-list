@@ -1,7 +1,8 @@
-import React, { useState,MouseEvent } from 'react'
-import EmailValidError from '../Login/EmailValidError'
+import React, { MouseEvent,useState } from 'react'
 import { getAuth,sendPasswordResetEmail  } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+
+import EmailValidError from '../Login/EmailValidError'
 
 const ResetForm = () => {
   const [email, setEmail] = useState('')

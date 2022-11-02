@@ -1,7 +1,8 @@
-import React, { useContext, FC,useState } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { Navigate } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { Navigate } from 'react-router-dom'
+
+import { AuthContext } from '../../context/AuthContext'
 
 
 //React.ReactNode

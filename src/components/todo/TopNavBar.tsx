@@ -62,6 +62,7 @@ const darkTheme = createTheme({
     </Box>
   );
 
+
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
