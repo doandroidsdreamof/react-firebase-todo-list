@@ -49,12 +49,10 @@ const Home: FC = () => {
       }) 
     )
   }
+  console.log(logic)
 
-  const deleteTodo = async (id) => {
-    await deleteDoc(doc(db, 'todos', id))
-  }
 
-  console.log(todos)
+
 
   return (
     <>
@@ -64,6 +62,7 @@ const Home: FC = () => {
         LogOutButton={<LogOutButton />}
         TextInput={<TextInput logic={(e: boolean) => setLogic(!logic)} />}
         TodosData={todos}
+        logic={(e) => setLogic(e)}
       />
     </>
   )

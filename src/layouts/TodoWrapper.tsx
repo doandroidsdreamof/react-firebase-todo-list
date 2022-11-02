@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, FC, FormEvent, MouseEvent } fro
 import { getAuth } from 'firebase/auth'
 import { AuthContext } from '../context/AuthContext'
 import { db } from '../firebase'
-import { TodoWrapperChildren } from '../types/Todos'
+import { TodoWrapperChildren ,singleTodo} from '../types/Todos'
 import TodoListBlocks from '../components/todo/TodoListBlocks'
 import EditButton from '../components/todo/EditButton'
 import DeleteButton from '../components/todo/DeleteButton'
@@ -23,11 +23,23 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const auth = getAuth()
   const user = useContext(AuthContext)
   const [modal, setModal] = useState<boolean>(false)
-  const [singleTodo, passSingleTodo] = useState<string>('')
+  const [singleTodo, passSingleTodo] = useState<singleTodo>({todo: '',id: ''})
+
+
+  useEffect(()=>{
+
+  },[])
 
   const handleSingleTodo = async (e) => {
-    passSingleTodo(e.todo)
+    passSingleTodo({todo:e.todo, id: e.id})
   }
+
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, 'Todo', id))
+    props.logic(false)
+
+  }
+
 
   return (
     <div
@@ -41,7 +53,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
         {props.TodoHead}
         <div className=' w-onehundred justify-center flex  flex-col overflow-x-hidden  '>
           {props.TextInput}
-          <ModalDelete singleTodo={singleTodo} open={modal} closeModal={(e) => setModal(e)} />
+          <ModalDelete deleteTodo={(e) => deleteTodo(e)}  singleTodo={singleTodo} open={modal} closeModal={(e) => setModal(e)} />
           <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {props.TodosData?.map((todos, index) => (
               <>

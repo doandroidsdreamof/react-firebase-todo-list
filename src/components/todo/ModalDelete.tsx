@@ -16,8 +16,11 @@ function ModalDelete(props: any) {
     props.closeModal(true)
   }
 
-  const handleClose = () => {
+  const handleClose = (e) => {
     props.closeModal(false)
+    if(e.target.innerText === 'REMOVE'){
+       props.deleteTodo(props.singleTodo.id)
+    }
   }
 
   return (
@@ -35,7 +38,7 @@ function ModalDelete(props: any) {
         <DialogContent>
           <DialogContentText>
             <div className='flex flex-wrap'>
-              <p className='text-justify'> {props.singleTodo}</p>
+              <p className='text-justify'> {props.singleTodo?.todo}</p>
             </div>
           </DialogContentText>
         </DialogContent>
@@ -43,8 +46,8 @@ function ModalDelete(props: any) {
           <Button autoFocus onClick={handleClose}>
             No
           </Button>
-          <Button onClick={handleClose} autoFocus>
-            Yes
+          <Button  onClick={handleClose} autoFocus>
+            <span className='text-red-700'>Remove</span>
           </Button>
         </DialogActions>
       </Dialog>

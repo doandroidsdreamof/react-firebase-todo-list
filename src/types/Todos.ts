@@ -10,5 +10,14 @@ export interface TodoWrapperChildren {
   TextInput: React.ReactNode;
   AddButton: React.ReactNode;
   LogOutButton: React.ReactNode;
+  logic:any;
   TodosData: Todosdata[];
+}
+
+
+export interface singleTodo {
+  todo?: string;
+  completed?: boolean;
+  id?: string;
+
 }
