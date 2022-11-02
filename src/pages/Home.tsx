@@ -50,7 +50,7 @@ const Home: FC = () => {
       }) 
     )
   }
-  console.log(logic)
+
 
 
 

@@ -7,6 +7,7 @@ import { AuthContext,AuthProvider } from './context/AuthContext'
 import FormWrapper from './layouts/FormWrapper'
 import Home from './pages/Home'
 import PasswordReset from './pages/PasswordReset'
+import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import { auth, db, storage } from './firebase'
@@ -45,13 +46,21 @@ function App() {
               <SignIn />
             </FormWrapper>
           }
-        />
+        />Home
 
         <Route
           path='/home'
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+              <Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
