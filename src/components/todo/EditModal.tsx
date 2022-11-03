@@ -24,15 +24,10 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
- function EditModal() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+ function EditModal(props) {
 
   const handleClose = () => {
-    setOpen(false);
+    props.closeEditModal()
   };
   const darkTheme = createTheme({
     palette: {
@@ -46,12 +41,9 @@ const Transition = React.forwardRef(function Transition(
   return (
     <ThemeProvider theme={darkTheme}>
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
-      </Button>
       <Dialog
         fullScreen
-        open={open}
+        open={props.openEdit}
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -66,11 +58,8 @@ const Transition = React.forwardRef(function Transition(
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              Edit Todo
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button>
           </Toolbar>
         </AppBar>
         <List>
