@@ -4,6 +4,7 @@ import { MdModeEditOutline } from 'react-icons/md'
 const EditButton = (props) => {
   const handleEditModal = (e) => {
     props.editModal(true)
+    props.onClick()
   }
 
 

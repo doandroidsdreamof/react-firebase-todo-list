@@ -30,21 +30,18 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const [update, watchUpdate] = useState<boolean>(false)
   const [singleTodo, passSingleTodo] = useState<singleTodo>({ todo: '', id: '' })
 
-  useEffect(()=>{
+  useEffect(() => {
     props.logic()
-  
-
-  },[update])
-
-
+  }, [update])
 
   const handleSingleTodo = async (e) => {
-    passSingleTodo({ todo: e.todo, id: e.id })
+    await passSingleTodo({ todo: e.todo, id: e.id })
+    props.logic()
   }
 
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, 'Todo', id))
-    props.logic(false)
+    props.logic()
   }
 
   const memeTodos = React.useMemo(
@@ -59,12 +56,10 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
               >
                 {todos.todo}
               </span>
-              <button onClick={(e) => handleSingleTodo(todos)}>
-                <EditButton editModal={(e) => setEditModal(e)} />
-              </button>
-              <button onClick={(e) => handleSingleTodo(todos)}>
-                <DeleteButton openModal={(e) => setModal(e)} />
-              </button>
+              <div className=' h-full  flex m-auto flex-row gap-x-1' >
+                <EditButton onClick={(e) => handleSingleTodo(todos)} editModal={(e) => setEditModal(e)} />
+                <DeleteButton onClick={(e) => handleSingleTodo(todos)} openModal={(e) => setModal(e)} />
+              </div>
             </TodoListBlocks>
           </>
         )

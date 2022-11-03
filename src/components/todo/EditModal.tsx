@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { useContext,useEffect,useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import { deleteDoc,doc, updateDoc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
 
 import CloseIcon from '@mui/icons-material/Close'
 import AppBar from '@mui/material/AppBar'
@@ -38,21 +38,20 @@ function EditModal(props: any) {
   }
   const auth = getAuth()
   const user = useContext(AuthContext)
-  const [editTodo,setEditTodo] = useState<string>('')
+  const [editTodo, setEditTodo] = useState<string>(props.singleTodo?.todo)
 
-
-  useEffect(()=>{
-setEditTodo(props.singleTodo?.todo)
-  },[])
+  useEffect(() => {
+  setEditTodo(props.singleTodo?.todo)
+  }, [props.singleTodo?.todo])
 
   const handleUpdate = async (e) => {
-    props.observer()
-    console.log('🚀 ~ file: EditModal.tsx ~ line 52 ~ handleUpdate ~ editTodo', editTodo)
     setEditTodo(e.target.value)
     const taskDocRef = doc(db, 'Todo', props.singleTodo?.id)
+    props.observer()
     try {
       await updateDoc(taskDocRef, {
-        todo: editTodo.length === 0 ?  await deleteDoc(doc(db, 'Todo', props.singleTodo?.id)) : editTodo,
+        todo:
+          e.target.value === '' ? await deleteDoc(doc(db, 'Todo', props.singleTodo?.id)) : editTodo,
       })
     } catch (err) {
       console.log(err)
@@ -95,7 +94,6 @@ setEditTodo(props.singleTodo?.todo)
               variant='outlined'
               value={editTodo}
               onChange={handleUpdate}
-
             />
           </Box>
         </Dialog>
