@@ -27,7 +27,16 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const user = useContext(AuthContext)
   const [modal, setModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
+  const [update, watchUpdate] = useState<boolean>(false)
   const [singleTodo, passSingleTodo] = useState<singleTodo>({ todo: '', id: '' })
+
+  useEffect(()=>{
+    props.logic()
+  
+
+  },[update])
+
+
 
   const handleSingleTodo = async (e) => {
     passSingleTodo({ todo: e.todo, id: e.id })
@@ -50,7 +59,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
               >
                 {todos.todo}
               </span>
-              <button>
+              <button onClick={(e) => handleSingleTodo(todos)}>
                 <EditButton editModal={(e) => setEditModal(e)} />
               </button>
               <button onClick={(e) => handleSingleTodo(todos)}>
@@ -83,9 +92,11 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             closeModal={(e) => setModal(e)}
           />
           <EditModal
-          openEdit={editModal}
-          closeEditModal={(e) => setEditModal(e)} 
-           />
+            singleTodo={singleTodo}
+            openEdit={editModal}
+            closeEditModal={(e) => setEditModal(e)}
+            observer={(e) => watchUpdate(!update)}
+          />
           <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {memeTodos}
           </div>

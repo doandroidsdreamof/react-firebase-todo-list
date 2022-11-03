@@ -20,16 +20,20 @@ function App() {
   const login = 'login'
   const auth = getAuth()
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid
-      console.log('🚀 ~ file: App.tsx ~ line 28 ~ onAuthStateChanged ~ uid', user)
-      setRouterLogic(true)
-    } else {
-      console.log('değişti', user)
-      setRouterLogic(false)
-    }
-  })
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid
+        // console.log('🚀 ~ file: App.tsx ~ line 28 ~ onAuthStateChanged ~ uid', user)
+        setRouterLogic(true)
+      } else {
+        console.log('değişti', user)
+        setRouterLogic(false)
+      }
+    })
+  },[])
+
+
 
   return (
     <AuthProvider>

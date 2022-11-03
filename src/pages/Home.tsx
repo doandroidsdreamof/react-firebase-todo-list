@@ -49,7 +49,7 @@ const Home: FC = () => {
       }) 
     )
   }
-  
+ 
 
 
  
@@ -62,7 +62,7 @@ const Home: FC = () => {
         AddButton={<AddButton />}
         TextInput={<TextInput logic={(e: boolean) => setLogic(!logic)} />}
         TodosData={todos}
-        logic={(e) => setLogic(e)}
+        logic={(e: boolean) => setLogic(!logic)}
       />
     </>
   )
