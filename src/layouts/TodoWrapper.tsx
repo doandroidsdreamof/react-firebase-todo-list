@@ -46,6 +46,8 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   }
 
   const handleSelect = (dataName) => {
+  console.log("🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName", dataName)
+  
   
     
   }

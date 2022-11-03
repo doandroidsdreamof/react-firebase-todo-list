@@ -39,7 +39,6 @@ const Home: FC = () => {
   async function getData() {
     const querySnapshot = await getDocs(collection(db, 'Todo'))
     querySnapshot.forEach((doc) => {
-      // console.log(doc.id, " => ", doc.data());
       todosArr.push({ id: doc.id, ...doc.data() })
       setLogic(true)
     })

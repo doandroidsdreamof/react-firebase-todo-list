@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom'
 
 import { AuthContext } from '../../context/AuthContext'
 
-
 //React.ReactNode
 type child = {
   children: React.ReactNode
@@ -13,28 +12,22 @@ type child = {
 const ProtectedRoute = ({ children }: child) => {
   const user = useContext(AuthContext)
   const auth = getAuth()
-  const [logic,setLogic] = useState(false)
+  const [logic, setLogic] = useState(false)
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-
-      const uid = user.uid;
-      // console.log('değişmedi', user)
+      const uid = user.uid
       setLogic(false)
     } else {
-      // console.log('değişti', user)
       setLogic(true)
-  
     }
-  });
+  })
 
   if (!user && logic === true) {
-    return <Navigate to='/' />;
-  }else{
-    return <>{children}</>;
+    return <Navigate to='/' />
+  } else {
+    return <>{children}</>
   }
-
-};
-
+}
 
 export default ProtectedRoute
