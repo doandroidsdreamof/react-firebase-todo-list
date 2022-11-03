@@ -14,6 +14,7 @@ import {
 
 import DeleteButton from '../components/todo/DeleteButton'
 import EditButton from '../components/todo/EditButton'
+import EditModal from '../components/todo/EditModal'
 import ModalDelete from '../components/todo/ModalDelete'
 import TodoListBlocks from '../components/todo/TodoListBlocks'
 import TopNavBar from '../components/todo/TopNavBar'
@@ -80,6 +81,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             open={modal}
             closeModal={(e) => setModal(e)}
           />
+          <EditModal />
           <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {memeTodos}
           </div>

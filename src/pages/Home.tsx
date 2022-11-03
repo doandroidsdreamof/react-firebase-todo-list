@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useState } from 'react'
+import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useMemo,useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import {
   addDoc,
@@ -43,16 +43,16 @@ const Home: FC = () => {
       todosArr.push({ id: doc.id, ...doc.data() })
       setLogic(true)
     })
-    todosArr.shift()
     setTodos(
       todosArr.sort(function (a, b): any {
         return a.date.localeCompare(b.date)
       }) 
     )
   }
+  
 
 
-
+ 
 
 
   return (
