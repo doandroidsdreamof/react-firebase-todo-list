@@ -41,21 +41,26 @@ function EditModal(props: any) {
   const [editTodo, setEditTodo] = useState<string>(props.singleTodo?.todo)
 
   useEffect(() => {
-  setEditTodo(props.singleTodo?.todo)
+    setEditTodo(props.singleTodo?.todo)
   }, [props.singleTodo?.todo])
 
   const handleUpdate = async (e) => {
     setEditTodo(e.target.value)
-    const taskDocRef = doc(db, 'Todo', props.singleTodo?.id)
+  }
+
+  const handleSubmit = async (e) => {
     props.observer()
+    const taskDocRef = doc(db, 'Todo', props.singleTodo?.id)
     try {
       await updateDoc(taskDocRef, {
         todo:
-          e.target.value === '' ? await deleteDoc(doc(db, 'Todo', props.singleTodo?.id)) : editTodo,
+        editTodo === '' ? await deleteDoc(doc(db, 'Todo', props.singleTodo?.id)) : editTodo,
+         
       })
     } catch (err) {
       console.log(err)
     }
+    props.closeEditModal()
   }
 
   const darkTheme = createTheme({
@@ -84,6 +89,9 @@ function EditModal(props: any) {
               <Typography sx={{ ml: 2, flex: 1 }} variant='h6' component='div'>
                 Edit Todo
               </Typography>
+              <Button onClick={(e) => handleSubmit(e)} variant='contained'>
+                Save Changes
+              </Button>
             </Toolbar>
           </AppBar>
           <Box className='h-screen '>
