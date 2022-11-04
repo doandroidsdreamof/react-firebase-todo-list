@@ -28,12 +28,11 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const [modal, setModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
   const [update, watchUpdate] = useState<boolean>(false)
-  const [completedTodos, setCompletedTodos] = useState(false)
   const [singleTodo, passSingleTodo] = useState<singleTodo>({ todo: '', id: '' })
 
   useEffect(() => {
     props.logic()
-  }, [update, completedTodos])
+  }, [update])
 
   const handleSingleTodo = async (e) => {
     await passSingleTodo({ todo: e.todo, id: e.id })
@@ -45,26 +44,24 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
     props.logic()
   }
 
-  const handleSelect = async (dataName: any) => {
+  const handleSelect = (dataName: any) => {
     console.log(
       '🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName',
       dataName.completed,
-      completedTodos,
     )
     const taskDocRef = doc(db, 'Todo', dataName?.id)
-    await setCompletedTodos(!completedTodos)
-
     try {
-      await updateDoc(taskDocRef, {
-        completed: completedTodos,
+      updateDoc(taskDocRef, {
+        completed: dataName.completed == false ? true : false,
       })
+      props.logic()
+
     } catch (err) {
       console.log(err)
     }
   }
-
   const todoTextStyle =
-    'text-white inline  font-medium cursor-pointer text-ellipsis truncate  font-roboto p-4  w-ninty'
+    'text-white inline  font-medium z-50 cursor-pointer text-ellipsis truncate  font-roboto p-4  w-ninty'
 
   const memeTodos = React.useMemo(
     () =>
@@ -73,7 +70,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
           <>
             <TodoListBlocks>
               <span
-                onClick={() => handleSelect(todos)}
+                onClick={(e) => handleSelect(todos)}
                 className={todos.completed ? `line-through ${todoTextStyle}` : ` ${todoTextStyle}`}
               >
                 {todos.todo}

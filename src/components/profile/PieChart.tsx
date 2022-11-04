@@ -1,18 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-  setDoc,
-  Timestamp,
-  updateDoc,
-} from 'firebase/firestore'
-import { type } from 'os'
+import React from 'react'
 
 import { Pie } from '@ant-design/plots'
 

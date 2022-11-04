@@ -22,7 +22,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     getData()
-
+    
   }, [logic])
 
   async function getData() {

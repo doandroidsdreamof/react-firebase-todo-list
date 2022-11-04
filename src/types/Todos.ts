@@ -20,3 +20,9 @@ export interface singleTodo {
   id?: string;
 
 }
+
+export interface completedTodos {
+  completed?: boolean;
+  id?: string;
+
+}

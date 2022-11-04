@@ -1,18 +1,25 @@
 import React, { useContext, useEffect } from 'react'
 import { getAuth } from 'firebase/auth'
+import {
+  collection,
+  getDocs,
+} from 'firebase/firestore'
 
 import LogOutButton from '../components/Login/LogOutButton'
 import PieChart from '../components/profile/PieChart'
 import TopNavBar from '../components/todo/TopNavBar'
 import { AuthContext } from '../context/AuthContext'
-import { auth } from '../firebase'
+import { db } from '../firebase'
+import {completedTodos} from '../types/Todos'
 
 const Profile = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
+  const completedData: Array<completedTodos>= [];
 
   useEffect(() => {
     getUser()
+    getData()
   }, [])
 
   function getUser() {
@@ -20,6 +27,14 @@ const Profile = () => {
       console.log(user?.displayName)
     }
   }
+  async function getData() {
+    const querySnapshot = await getDocs(collection(db, 'Todo'))
+    querySnapshot.forEach((doc) => {
+      completedData.push({ id: doc.id, ...doc.data() })
+    })
+    console.log(completedData)
+  }
+
 
   return (
     <div className={user === null ? 'hidden ' : 'bg-bg-color'}>
