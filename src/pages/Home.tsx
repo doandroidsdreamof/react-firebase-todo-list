@@ -1,21 +1,10 @@
-import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useMemo,useState } from 'react'
+import React, { FC,useContext, useEffect,useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import {
-  addDoc,
   collection,
-  deleteDoc,
-  doc,
   getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-  setDoc,
-  Timestamp,
-  updateDoc,
 } from 'firebase/firestore'
-import { type } from 'os'
 
-import LogOutButton from '../components/Login/LogOutButton'
 import AddButton from '../components/todo/AddButton'
 import TextInput from '../components/todo/TextInput'
 import TodoHead from '../components/todo/TodoHead'
@@ -45,13 +34,13 @@ const Home: FC = () => {
     setTodos(
       todosArr.sort(function (a, b): any {
         return a.date.localeCompare(b.date)
-      }) 
+      })
     )
   }
- 
 
 
- 
+
+
 
 
   return (
