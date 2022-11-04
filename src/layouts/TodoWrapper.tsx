@@ -28,12 +28,12 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   const [modal, setModal] = useState<boolean>(false)
   const [editModal, setEditModal] = useState<boolean>(false)
   const [update, watchUpdate] = useState<boolean>(false)
-  const [completed, setCompleted] = useState({})
+  const [completedTodos, setCompletedTodos] = useState(false)
   const [singleTodo, passSingleTodo] = useState<singleTodo>({ todo: '', id: '' })
 
   useEffect(() => {
     props.logic()
-  }, [update, completed])
+  }, [update, completedTodos])
 
   const handleSingleTodo = async (e) => {
     await passSingleTodo({ todo: e.todo, id: e.id })
@@ -45,11 +45,22 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
     props.logic()
   }
 
-  const handleSelect = (dataName) => {
-  console.log("🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName", dataName)
-  
-  
-    
+  const handleSelect = async (dataName: any) => {
+    console.log(
+      '🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName',
+      dataName.completed,
+      completedTodos,
+    )
+    const taskDocRef = doc(db, 'Todo', dataName?.id)
+    await setCompletedTodos(!completedTodos)
+
+    try {
+      await updateDoc(taskDocRef, {
+        completed: completedTodos,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const todoTextStyle =
@@ -57,14 +68,13 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
 
   const memeTodos = React.useMemo(
     () =>
-      props.TodosData?.map((todos,index) => {
+      props.TodosData?.map((todos, index) => {
         return (
           <>
             <TodoListBlocks>
               <span
-                onClick={(e) => setCompleted(!completed)}
-                className={completed ? `line-through ${todoTextStyle}` : ` ${todoTextStyle}`}
-                key={index}
+                onClick={() => handleSelect(todos)}
+                className={todos.completed ? `line-through ${todoTextStyle}` : ` ${todoTextStyle}`}
               >
                 {todos.todo}
               </span>
@@ -82,7 +92,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
           </>
         )
       }),
-    [props.TodosData,completed],
+    [props.TodosData],
   )
 
   return (
@@ -110,7 +120,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             closeEditModal={(e) => setEditModal(e)}
             observer={(e) => watchUpdate(!update)}
           />
-          <div className='flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
+          <div className=' flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
             {memeTodos}
           </div>
         </div>

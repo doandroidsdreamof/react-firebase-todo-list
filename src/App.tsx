@@ -24,10 +24,8 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid
-        // console.log('🚀 ~ file: App.tsx ~ line 28 ~ onAuthStateChanged ~ uid', user)
         setRouterLogic(true)
-      } else {
-        console.log('değişti', user)
+      } else { 
         setRouterLogic(false)
       }
     })
