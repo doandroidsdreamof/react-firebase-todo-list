@@ -25,7 +25,7 @@ function App() {
       if (user) {
         const uid = user.uid
         setRouterLogic(true)
-      } else { 
+      } else {
         setRouterLogic(false)
       }
     })

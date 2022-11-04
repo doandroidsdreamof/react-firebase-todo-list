@@ -3,8 +3,9 @@ import React, { createContext, PropsWithChildren,useContext,useEffect, useState 
 import { auth } from '../firebase'
 
 interface AuthContextInterFace {
-  user: React.ReactNode
+  user: React.ReactNode;
   loading: boolean;
+  displayName: string;
 }
 
 
@@ -13,7 +14,7 @@ type child = {
   children: React.ReactNode;
 
 
-  
+
 }
 
 export const AuthContext = React.createContext<AuthContextInterFace | null>(null)
@@ -23,7 +24,7 @@ export const AuthContext = React.createContext<AuthContextInterFace | null>(null
 export const AuthProvider = ({ children }: child) => {
   const [user, setUser] = useState<AuthContextInterFace | null>(null)
 
-  
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: any) => {
       setUser(user)
