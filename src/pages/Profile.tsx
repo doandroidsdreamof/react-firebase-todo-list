@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect,useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import {
   collection,
@@ -16,25 +16,29 @@ const Profile = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
   const completedData: Array<completedTodos>= [];
+  const [completedValue, getCompletedValue] = useState<completedTodos[]>([{}])
+  const [uncompletedValue,getUncompletedValue] = useState()
 
   useEffect(() => {
-    getUser()
     getData()
   }, [])
 
   function getUser() {
     if (user !== null) {
-      console.log(user?.displayName)
+      // console.log(user?.displayName)
     }
   }
   async function getData() {
     const querySnapshot = await getDocs(collection(db, 'Todo'))
     querySnapshot.forEach((doc) => {
       completedData.push({ id: doc.id, ...doc.data() })
+
     })
+    getCompletedValue(
+      completedData
+    )
     console.log(completedData)
   }
-
 
   return (
     <div className={user === null ? 'hidden ' : 'bg-bg-color'}>

@@ -8,11 +8,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
-import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
 import Slide from '@mui/material/Slide'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
@@ -55,7 +51,7 @@ function EditModal(props: any) {
       await updateDoc(taskDocRef, {
         todo:
         editTodo === '' ? await deleteDoc(doc(db, 'Todo', props.singleTodo?.id)) : editTodo,
-         
+
       })
     } catch (err) {
       console.log(err)

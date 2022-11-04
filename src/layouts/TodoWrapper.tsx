@@ -1,14 +1,8 @@
-import React, { FC, FormEvent, MouseEvent, useContext, useEffect, useMemo, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import {
-  addDoc,
-  collection,
   deleteDoc,
   doc,
-  onSnapshot,
-  query,
-  setDoc,
-  Timestamp,
   updateDoc,
 } from 'firebase/firestore'
 
