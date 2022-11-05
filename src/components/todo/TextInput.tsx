@@ -1,5 +1,6 @@
-import React, { FC, FormEvent, MouseEvent,useContext, useEffect, useState } from 'react'
-import { addDoc, collection,deleteDoc, doc } from 'firebase/firestore'
+import React, { useState } from 'react'
+import { getAuth } from 'firebase/auth';
+import { addDoc, collection,Timestamp } from 'firebase/firestore'
 
 import { useInput } from '@mui/base'
 import { styled } from '@mui/system'
@@ -62,6 +63,8 @@ const CustomInput = React.forwardRef(function CustomInput(
 
   const inputProps = getInputProps()
 
+
+
   // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
   inputProps.ref = useForkRef(inputProps.ref, ref)
 
@@ -74,6 +77,9 @@ const CustomInput = React.forwardRef(function CustomInput(
 
 function TextInput(props: any) {
   const [input, setInput] = useState('')
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const handleInput = async (value: string) => {
     setInput(value)
   }
@@ -87,6 +93,9 @@ function TextInput(props: any) {
         todo: input,
         completed: false,
         date: new Date().toLocaleString(),
+        createdAt: Timestamp.fromDate(new Date()),
+        id: user?.uid,
+        owner: user?.uid
       })
 
       // console.log('Document written with ID: ', docRef.id)

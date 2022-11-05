@@ -1,11 +1,8 @@
 import {MouseEvent} from 'react'
-import { getAuth } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
-import Tooltip from '@mui/material/Tooltip'
 
-import { AuthContext } from '../../context/AuthContext'
 import {signOutUser} from '../../utils/SignOut'
 
 

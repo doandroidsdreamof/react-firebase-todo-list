@@ -1,12 +1,10 @@
-import React, { FC,useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack'
 
 type props = {
   alertBox: boolean;
@@ -22,7 +20,7 @@ function LoginAlert ({alertBox}: props ) {
   return (
 
 <div className='absolute z-50 right-3 top-2 w-64'>
-    
+
 <Box sx={{ width: '100%' }}>
       <Collapse in={open}>
         <Alert
@@ -47,8 +45,8 @@ function LoginAlert ({alertBox}: props ) {
 
     </Box>
 </div>
-    
-    
+
+
 
   );
 }

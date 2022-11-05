@@ -1,4 +1,4 @@
-import React, { FC,useContext, useEffect } from 'react'
+import React, { FC,useContext } from 'react'
 
 import { AuthContext } from '../context/AuthContext'
 
@@ -11,7 +11,7 @@ interface LoginRegisterProps {
 const FormWrapper: FC<LoginRegisterProps> = (props) => {
 
   const user = useContext(AuthContext)
-  
+
 
 
 

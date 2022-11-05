@@ -1,11 +1,7 @@
-import React, { FC, MouseEvent,useContext, useEffect, useState } from 'react'
+import React, { MouseEvent,useContext, useEffect, useState } from 'react'
 import {
   getAuth,
-  GithubAuthProvider,
-  GoogleAuthProvider,
-  linkWithPopup,
   signInWithEmailAndPassword,
-  signInWithPopup,
 } from 'firebase/auth'
 import { Field, Form, Formik, FormikHelpers } from 'formik'
 import { useNavigate } from 'react-router-dom'
@@ -27,7 +23,7 @@ const LoginForm = () => {
   const auth = getAuth()
   const user = useContext(AuthContext)
   const loginPage = 'login'
-  
+
 
   useEffect(()=>{
 
@@ -54,7 +50,7 @@ const LoginForm = () => {
     return error
   }
 
-  
+
 
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
       signInWithEmailAndPassword(auth, email, password)
@@ -68,7 +64,7 @@ const LoginForm = () => {
           const errorMessage = error.message
           console.log('başarısız =>', errorMessage)
         })
-    
+
   }
 
 
@@ -114,7 +110,7 @@ invalid:ring-2 '
         <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
         <GoogleButton page={loginPage} />
         </div>
-   
+
         <button
           className='w-full  py-3 px-6 rounded-md bg-sky-600
                           focus:bg-sky-700 active:bg-sky-500'

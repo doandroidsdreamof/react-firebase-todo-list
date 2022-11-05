@@ -1,6 +1,4 @@
-import React, { FC, useContext,useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
 
 import loginImage from '../assets/image/login3.jpg'
 import LoginAlert from '../components/Login/LoginAlert'
@@ -14,7 +12,7 @@ const SignIn = () => {
   const user = useContext(AuthContext)
 
 
-  
+
 
   return (
     <>
@@ -39,7 +37,7 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-        
+
       </div>
     </>
   )

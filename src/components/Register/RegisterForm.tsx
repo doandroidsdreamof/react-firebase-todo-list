@@ -1,10 +1,7 @@
-import React, { FC, FormEvent,MouseEvent,useContext, useEffect, useState } from 'react'
+import React, {MouseEvent, useState } from 'react'
 import { createUserWithEmailAndPassword, getAuth,updateProfile } from 'firebase/auth';
-import { Field, Form, Formik, FormikHelpers } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import { string } from 'yup'
 
-import { AuthContext } from '../../context/AuthContext'
 import EmailValidError from '../Login/EmailValidError'
 
 
@@ -70,7 +67,7 @@ const RegisterForm = () => {
     }))
   }
 
-  
+
 const handleSubmit = (e: MouseEvent<HTMLButtonElement>) =>{
   e.preventDefault()
   createUserWithEmailAndPassword(auth, data.email, data.password)
@@ -84,7 +81,7 @@ const handleSubmit = (e: MouseEvent<HTMLButtonElement>) =>{
   .catch((error) => {
     console.log('register error =>', error)
 
- 
+
   });
 
 }
@@ -151,7 +148,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
       <button
         className='w-full py-3 px-6 rounded-md bg-sky-600
                 focus:bg-sky-700 active:bg-sky-500'
-                onClick={(e) => handleSubmit(e)} 
+                onClick={(e) => handleSubmit(e)}
       >
         <span className='text-white'>Continue</span>
       </button>

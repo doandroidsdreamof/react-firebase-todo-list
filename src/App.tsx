@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import ProtectedRoute from './components/common/ProtectedRoute'
 import { AuthContext, AuthProvider } from './context/AuthContext'
@@ -10,7 +10,6 @@ import PasswordReset from './pages/PasswordReset'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import { auth, db, storage } from './firebase'
 
 function App() {
   const user = useContext(AuthContext)

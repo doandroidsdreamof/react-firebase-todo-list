@@ -56,7 +56,6 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   }
   const todoTextStyle =
     'text-white inline  font-medium z-50 cursor-pointer text-ellipsis truncate  font-roboto p-4  w-ninty'
-
   const memeTodos = React.useMemo(
     () =>
       props.TodosData?.map((todos, index) => {

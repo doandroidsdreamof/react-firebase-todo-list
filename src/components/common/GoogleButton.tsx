@@ -1,10 +1,8 @@
-import React, { FC, MouseEvent, useContext, useState } from 'react'
+import React, { FC, MouseEvent, useContext } from 'react'
 import {
   getAuth,
   GoogleAuthProvider,
-  linkWithCredential,
   linkWithPopup,
-  onAuthStateChanged,
   signInWithPopup,
 } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
@@ -50,7 +48,7 @@ const GoogleButton: FC<PageProps> = (props) => {
       });
   }
 
- 
+
 
 
 

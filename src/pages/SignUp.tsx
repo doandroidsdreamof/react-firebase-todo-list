@@ -1,4 +1,4 @@
-import React, { FC,useEffect, useState } from 'react'
+import React, { FC } from 'react'
 
 import GoogleButton from '../components/common/GoogleButton'
 import LoginLink from '../components/Register/LoginLink'
