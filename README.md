@@ -64,7 +64,7 @@
 <div align="center">
   <img src="/screenshots/register.png" alt="screenshot" />
 </div>
-<div align="center" style='display:flex; flex-direction: row; gap:10px;'>
+<div align="center" style='display:flex; flex-direction: row;'>
   <img style=' width: 50%;' src="/screenshots/home-page-mobile.png" alt="screenshot" />
     <img style=' width: 50%;'  src="/screenshots/mobile-navbar.png" alt="screenshot" />
 </div>
