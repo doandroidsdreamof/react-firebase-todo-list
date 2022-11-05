@@ -64,10 +64,10 @@
 <div align="center">
   <img src="/screenshots/register.png" alt="screenshot" />
 </div>
-<div align="center" style='display:flex; flex-direction: row;'>
-  <img style=' width: 50%;' src="/screenshots/home-page-mobile.png" alt="screenshot" />
-    <img style=' width: 50%;'  src="/screenshots/mobile-navbar.png" alt="screenshot" />
+<div align="center">
+  <img   width="49%" src="/screenshots/home-page-mobile.png" alt="screenshot" />    <img  width="49%" src="/screenshots/mobile-navbar.png" alt="screenshot" />
 </div>
+
 <!-- TechStack -->
 ### :space_invader: Tech Stack
 
