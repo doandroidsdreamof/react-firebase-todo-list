@@ -13,7 +13,7 @@ const Home: FC = () => {
   const auth = getAuth()
   const [todos, setTodos] = useState<Todosdata[]>([])
   const todosArr: Array<Todosdata> = []
-  const [logic, setLogic] = useState<boolean>(false) // to obverse databae changes
+  const [logic, setLogic] = useState<boolean>(false) // to obverse database changes
   const user: any = auth.currentUser
   const todosRef: any = collection(db, 'Todo')
 

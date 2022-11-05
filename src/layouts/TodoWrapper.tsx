@@ -41,12 +41,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   }
 
   const handleSelect = async (dataName: any) => {
-    console.log(
-      '🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName',
-      dataName.completed,
-    )
     const taskDocRef = await doc(db, 'Todo', dataName?.id)
-    console.log(dataName)
     try {
       updateDoc(taskDocRef, {
         completed: dataName.completed == false ? true : false,
@@ -59,7 +54,6 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   }
   const todoTextStyle =
     'text-white inline  font-medium z-50 cursor-pointer text-ellipsis truncate  font-roboto p-4  w-ninty'
-console.log(props.TodosData)
   return (
     <div
       className={

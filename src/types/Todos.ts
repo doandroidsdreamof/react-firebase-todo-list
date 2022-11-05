@@ -25,3 +25,8 @@ export interface completedTodos {
   completed?: boolean
   id?: string
 }
+export interface ChartData {
+  completed?: number
+  unCompleted?: number
+
+}

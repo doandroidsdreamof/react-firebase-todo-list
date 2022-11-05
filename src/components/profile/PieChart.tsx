@@ -1,16 +1,17 @@
-import React from 'react'
+import React,{FC} from 'react'
 
 import { Pie } from '@ant-design/plots'
+import { ChartData } from '../../types/Todos'
 
-const PieChart = () => {
+const PieChart:FC <ChartData> = (props) => {
   const data = [
     {
       type: 'Completed Todos',
-      value: 27,
+      value: props.completed,
     },
     {
       type: 'Uncompleted Todos',
-      value: 25,
+      value: props.unCompleted,
     },
   ]
   const config = {

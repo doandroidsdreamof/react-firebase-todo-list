@@ -1,27 +1,26 @@
-import React, { useContext, useEffect,useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import {
-  collection,
-  getDocs,
-} from 'firebase/firestore'
+import { collection, getDocs, where, query } from 'firebase/firestore'
 
 import LogOutButton from '../components/Login/LogOutButton'
 import PieChart from '../components/profile/PieChart'
 import TopNavBar from '../components/todo/TopNavBar'
 import { AuthContext } from '../context/AuthContext'
 import { db } from '../firebase'
-import {completedTodos} from '../types/Todos'
+import { completedTodos } from '../types/Todos'
 
 const Profile = () => {
   const user = useContext(AuthContext)
   const auth = getAuth()
-  const completedData: Array<completedTodos>= [];
-  const [completedValue, getCompletedValue] = useState<completedTodos[]>([{}])
-  const [uncompletedValue,getUncompletedValue] = useState()
+  const completedData: Array<completedTodos> = []
+  const [completedValue, getCompletedValue] = useState<completedTodos[]>([])
+  const [unCompletedValue, getUncompletedValue] = useState<completedTodos[]>([])
+  const [logic, setLogic] = useState<boolean>(false) // to obverse database changes
+  const currentUser: any = auth.currentUser
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [logic])
 
   function getUser() {
     if (user !== null) {
@@ -29,16 +28,17 @@ const Profile = () => {
     }
   }
   async function getData() {
-    const querySnapshot = await getDocs(collection(db, 'Todo'))
+    const querySnap = query(collection(db, 'Todo'), where('owner', '==', currentUser?.uid))
+    const querySnapshot = await getDocs(querySnap)
     querySnapshot.forEach((doc) => {
       completedData.push({ id: doc.id, ...doc.data() })
-
     })
-    getCompletedValue(
-      completedData
-    )
-    console.log(completedData)
+
+    getCompletedValue(completedData.filter((el) => el.completed === true))
+    getUncompletedValue(completedData.filter((el) => el.completed === false))
+    setLogic(true)
   }
+
 
   return (
     <div className={user === null ? 'hidden ' : 'bg-bg-color'}>
@@ -55,7 +55,7 @@ const Profile = () => {
         </p>
       </div>
       <div className=' lg:w-1/2 mx-auto'>
-      <PieChart />
+        <PieChart unCompleted={unCompletedValue.length} completed={completedValue.length} />
       </div>
       <div className='w-fit h-fit flex  mt-auto absolute bottom-5  left-5 '>
         <LogOutButton />
