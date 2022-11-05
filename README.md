@@ -23,9 +23,7 @@
 <h4>
     <a href="https://github.com/react-firebase-todo-list/react-firebase-todo-list">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/react-firebase-todo-list/react-firebase-todo-list">Documentation</a>
-  <span> · </span>
-    <a href="https://github.com/doandroidsdreamof/react-firebase-todo-list/issues">Report Bug</a>
+    <a href="https://github.com/react-firebase-todo-list/react-firebase-todo-list/issues">Report Bug</a>
   <span> · </span>
     <a href="https://github.com/react-firebase-todo-list/react-firebase-todo-list/issues">Request Feature</a>
   </h4>
