@@ -47,6 +47,7 @@ function EditModal(props: any) {
   const handleSubmit = async (e) => {
     props.observer()
     const taskDocRef = doc(db, 'Todo', props.singleTodo?.id)
+    console.log(taskDocRef)
     try {
       await updateDoc(taskDocRef, {
         todo:

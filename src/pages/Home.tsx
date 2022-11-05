@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import { collection, getDocs, orderBy, where,query} from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 import AddButton from '../components/todo/AddButton'
 import TextInput from '../components/todo/TextInput'
@@ -11,7 +11,7 @@ import { Todosdata } from '../types/Todos'
 
 const Home: FC = () => {
   const auth = getAuth()
-  const [todos, setTodos] = useState<Todosdata[]>([{}])
+  const [todos, setTodos] = useState<Todosdata[]>([])
   const todosArr: Array<Todosdata> = []
   const [logic, setLogic] = useState<boolean>(false) // to obverse databae changes
   const user: any = auth.currentUser
@@ -22,22 +22,19 @@ const Home: FC = () => {
   }, [logic])
 
   async function getData() {
-    const q = query(collection(db, "Todo"), where("owner", "==", user.uid));
-
-    const querySnapshot = await getDocs(q);
+    const q = query(collection(db, 'Todo'), where('owner', '==', user.uid))
+    const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
       todosArr.push({ id: doc.id, ...doc.data() })
-    });
+    })
+    setLogic(true)
+
     setTodos(
       todosArr.sort(function (a, b): any {
         return a.date.localeCompare(b.date)
-      }))
+      }),
+    )
   }
-
-console.log(user)
-
-
-
 
   return (
     <>

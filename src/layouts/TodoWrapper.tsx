@@ -26,6 +26,8 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
 
   useEffect(() => {
     props.logic()
+
+
   }, [update])
 
   const handleSingleTodo = async (e) => {
@@ -38,12 +40,13 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
     props.logic()
   }
 
-  const handleSelect = (dataName: any) => {
+  const handleSelect = async (dataName: any) => {
     console.log(
       '🚀 ~ file: TodoWrapper.tsx ~ line 49 ~ handleSelect ~ dataName',
       dataName.completed,
     )
-    const taskDocRef = doc(db, 'Todo', dataName?.id)
+    const taskDocRef = await doc(db, 'Todo', dataName?.id)
+    console.log(dataName)
     try {
       updateDoc(taskDocRef, {
         completed: dataName.completed == false ? true : false,
@@ -56,35 +59,7 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
   }
   const todoTextStyle =
     'text-white inline  font-medium z-50 cursor-pointer text-ellipsis truncate  font-roboto p-4  w-ninty'
-  const memeTodos = React.useMemo(
-    () =>
-      props.TodosData?.map((todos, index) => {
-        return (
-          <>
-            <TodoListBlocks>
-              <span
-                onClick={(e) => handleSelect(todos)}
-                className={todos.completed ? `line-through ${todoTextStyle}` : ` ${todoTextStyle}`}
-              >
-                {todos.todo}
-              </span>
-              <div className=' h-full  flex m-auto flex-row gap-x-1'>
-                <EditButton
-                  onClick={(e) => handleSingleTodo(todos)}
-                  editModal={(e) => setEditModal(e)}
-                />
-                <DeleteButton
-                  onClick={(e) => handleSingleTodo(todos)}
-                  openModal={(e) => setModal(e)}
-                />
-              </div>
-            </TodoListBlocks>
-          </>
-        )
-      }),
-    [props.TodosData],
-  )
-
+console.log(props.TodosData)
   return (
     <div
       className={
@@ -111,7 +86,31 @@ const TodoWrapper: FC<TodoWrapperChildren> = (props) => {
             observer={(e) => watchUpdate(!update)}
           />
           <div className=' flex flex-col-reverse items-center mb-4  w-onehundred justify-center'>
-            {memeTodos}
+          {props.TodosData?.map((todos, index) => {
+        return (
+          <>
+            <TodoListBlocks>
+              <span
+                onClick={(e) => handleSelect(todos)}
+                className={todos.completed ? `line-through ${todoTextStyle}` : ` ${todoTextStyle}`}
+                key={index}
+              >
+                {todos.todo}
+              </span>
+              <div className=' h-full  flex m-auto flex-row gap-x-1'>
+                <EditButton
+                  onClick={(e) => handleSingleTodo(todos)}
+                  editModal={(e) => setEditModal(e)}
+                />
+                <DeleteButton
+                  onClick={(e) => handleSingleTodo(todos)}
+                  openModal={(e) => setModal(e)}
+                />
+              </div>
+            </TodoListBlocks>
+          </>
+        )
+      })}
           </div>
         </div>
       </div>

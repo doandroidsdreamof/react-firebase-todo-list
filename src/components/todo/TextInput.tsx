@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection,Timestamp } from 'firebase/firestore'
+import { addDoc, collection,Timestamp,doc } from 'firebase/firestore'
 
 import { useInput } from '@mui/base'
 import { styled } from '@mui/system'
@@ -94,8 +94,7 @@ function TextInput(props: any) {
         completed: false,
         date: new Date().toLocaleString(),
         createdAt: Timestamp.fromDate(new Date()),
-        id: user?.uid,
-        owner: user?.uid
+        owner: user?.uid,
       })
 
       // console.log('Document written with ID: ', docRef.id)
