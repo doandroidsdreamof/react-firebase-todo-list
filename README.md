@@ -118,13 +118,6 @@ This project uses Npm as package manager
 npm install -g npm
 ```
 
-<!-- Installation -->
-### :gear: Installation
-
-```bash
-npm install react-firebase-todo-list
-```
-
 <!-- Running Tests -->
 ### :running: Run Locally
 
