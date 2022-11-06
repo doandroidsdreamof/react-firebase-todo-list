@@ -45,3 +45,18 @@ export interface Values {
   password: string
   email: string
 }
+
+
+
+export interface AuthContextInterFace {
+  user: React.ReactNode;
+  loading: boolean;
+  displayName: string;
+}
+
+
+
+export type child = {
+  children: React.ReactNode;
+
+}

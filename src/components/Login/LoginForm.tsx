@@ -1,9 +1,8 @@
-import React, { MouseEvent, useContext, useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { Field, Form, Formik, FormikHelpers } from 'formik'
 import { useNavigate } from 'react-router-dom'
 
-import { AuthContext } from '../../context/AuthContext'
 import { Values } from '../../types/Todos'
 import GoogleButton from '../common/GoogleButton'
 
@@ -16,7 +15,6 @@ const LoginForm = () => {
   const [alertBoxMail, setAlertBoxMail] = useState(false)
   const navigate = useNavigate()
   const auth = getAuth()
-  const user = useContext(AuthContext)
   const loginPage = 'login'
 
   function validateEmail(value: string) {
@@ -41,12 +39,10 @@ const LoginForm = () => {
       .then((userCredential) => {
         const user = userCredential.user
         navigate('/home')
-        //  console.log('başarılı =>', user)
       })
       .catch((error) => {
-        const errorCode = error.code
         const errorMessage = error.message
-        console.log('başarısız =>', errorMessage)
+        console.error(errorMessage)
       })
   }
 
