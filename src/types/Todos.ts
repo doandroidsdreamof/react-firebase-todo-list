@@ -30,3 +30,18 @@ export interface ChartData {
   unCompleted?: number
 
 }
+export interface LoginRegisterProps {
+  children: React.ReactNode
+  state: string
+}
+
+
+export type errorEmail = {
+  validError: boolean,
+}
+
+
+export interface Values {
+  password: string
+  email: string
+}

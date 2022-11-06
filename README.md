@@ -63,7 +63,7 @@
   <img src="/screenshots/register.png" alt="screenshot" />
 </div>
 <div align="center">
-  <img   width="49%" src="/screenshots/home-page-mobile.png" alt="screenshot" />    <img  width="49%" src="/screenshots/mobile-navbar.png" alt="screenshot" />
+  <img   width="49%" src="/screenshots/home-page-mobile2.png" alt="screenshot" />    <img  width="49%" src="/screenshots/mobile-navbar.png" alt="screenshot" />
 </div>
 
 <!-- TechStack -->

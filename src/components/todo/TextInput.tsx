@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection,Timestamp,doc } from 'firebase/firestore'
+import { addDoc, collection,Timestamp } from 'firebase/firestore'
 
 import { useInput } from '@mui/base'
 import { styled } from '@mui/system'
@@ -65,7 +65,6 @@ const CustomInput = React.forwardRef(function CustomInput(
 
 
 
-  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
   inputProps.ref = useForkRef(inputProps.ref, ref)
 
   return (
@@ -96,8 +95,6 @@ function TextInput(props: any) {
         createdAt: Timestamp.fromDate(new Date()),
         owner: user?.uid,
       })
-
-      // console.log('Document written with ID: ', docRef.id)
     } catch (e) {
       console.error('Error adding document: ', e)
     }
@@ -117,14 +114,14 @@ function TextInput(props: any) {
 
   return (
     <form
-      className='   justify-center  mx-auto flex flex-row   gap-x-3 overflow-hidden'
+      className='   justify-center  mx-auto flex flex-row   gap-x-2  overflow-hidden'
       onSubmit={(e) => handleSubmit(e)}
     >
       <CustomInput
         onChange={(e) => setInput(e.target.value)}
         aria-label='todo input'
         placeholder='Type something…'
-        className='w-[320px] lg:w-[420px]'
+        className='w-[320px] lg:w-[420px] ml-2'
       />
       <AddButton />
     </form>

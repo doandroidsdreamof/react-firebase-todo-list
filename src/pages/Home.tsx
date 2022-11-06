@@ -14,11 +14,13 @@ const Home: FC = () => {
   const [todos, setTodos] = useState<Todosdata[]>([])
   const todosArr: Array<Todosdata> = []
   const [logic, setLogic] = useState<boolean>(false) // to obverse database changes
+  const [render, setRender] = useState<boolean>(false)
   const user: any = auth.currentUser
   const todosRef: any = collection(db, 'Todo')
 
   useEffect(() => {
     getData()
+
   }, [logic])
 
   async function getData() {
@@ -27,7 +29,7 @@ const Home: FC = () => {
     querySnapshot.forEach((doc) => {
       todosArr.push({ id: doc.id, ...doc.data() })
     })
-    setLogic(true)
+    setRender(true)
 
     setTodos(
       todosArr.sort(function (a, b): any {

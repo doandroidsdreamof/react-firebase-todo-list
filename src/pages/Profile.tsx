@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
-import { collection, getDocs, where, query } from 'firebase/firestore'
+import { collection, getDocs, query,where } from 'firebase/firestore'
 
 import LogOutButton from '../components/Login/LogOutButton'
 import PieChart from '../components/profile/PieChart'
@@ -22,11 +22,7 @@ const Profile = () => {
     getData()
   }, [logic])
 
-  function getUser() {
-    if (user !== null) {
-      // console.log(user?.displayName)
-    }
-  }
+
   async function getData() {
     const querySnap = query(collection(db, 'Todo'), where('owner', '==', currentUser?.uid))
     const querySnapshot = await getDocs(querySnap)
@@ -39,28 +35,33 @@ const Profile = () => {
     setLogic(true)
   }
 
-
   return (
-    <div className={user === null ? 'hidden ' : 'bg-bg-color'}>
-      <TopNavBar />
-      <div className=' left-5  relative'>
-        <h1 className='mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl'>
-          <span className='text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400'>
-            Hello, Welcome Todos
-          </span>
-          {' ' + user?.displayName}.
-        </h1>
-        <p className='text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400'>
-          You can see your todos stats.
-        </p>
+    <main>
+      <div className={user === null ? 'hidden ' : 'bg-bg-color'}>
+        <TopNavBar />
+        <div className=' left-5  relative'>
+          <header>
+            <h1 className='mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl'>
+              <span className='text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400'>
+                Hello, Welcome Todos
+              </span>
+              {' ' + user?.displayName}.
+            </h1>
+          </header>
+          <p className='text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400'>
+            You can see your todos stats.
+          </p>
+        </div>
+        <section>
+          <div className=' lg:w-1/2 mx-auto'>
+            <PieChart unCompleted={unCompletedValue.length} completed={completedValue.length} />
+          </div>
+          <div className='w-fit h-fit flex  mt-auto absolute bottom-5  left-5 '>
+            <LogOutButton />
+          </div>
+        </section>
       </div>
-      <div className=' lg:w-1/2 mx-auto'>
-        <PieChart unCompleted={unCompletedValue.length} completed={completedValue.length} />
-      </div>
-      <div className='w-fit h-fit flex  mt-auto absolute bottom-5  left-5 '>
-        <LogOutButton />
-      </div>
-    </div>
+    </main>
   )
 }
 

@@ -72,7 +72,8 @@ function TopNavBar(props: Props) {
   const container = window !== undefined ? () => window().document.body : undefined
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <nav>
+          <Box sx={{ display: 'flex' }}>
       <ThemeProvider theme={darkTheme}>
         <AppBar component='nav'>
           <Toolbar>
@@ -124,6 +125,8 @@ function TopNavBar(props: Props) {
         </Box>
       </ThemeProvider>
     </Box>
+    </nav>
+
   )
 }
 export default TopNavBar

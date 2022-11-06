@@ -1,20 +1,15 @@
-import React, { MouseEvent,useContext, useEffect, useState } from 'react'
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from 'firebase/auth'
+import React, { MouseEvent, useContext, useState } from 'react'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { Field, Form, Formik, FormikHelpers } from 'formik'
 import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../context/AuthContext'
+import { Values } from '../../types/Todos'
 import GoogleButton from '../common/GoogleButton'
 
 import EmailValidError from './EmailValidError'
 
-interface Values {
-  password: string
-  email: string
-}
+
 const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,50 +19,36 @@ const LoginForm = () => {
   const user = useContext(AuthContext)
   const loginPage = 'login'
 
-
-  useEffect(()=>{
-
-  },[])
-
-
-
   function validateEmail(value: string) {
     let error
     const emailValidation = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     if (!value || value.length === 0) {
       error = 'Required'
       setAlertBoxMail(false)
-    }
-    else if (!emailValidation.test(value)) {
+    } else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
     } else if (emailValidation.test(value) || value.length == 0) {
       setEmail(value)
       setAlertBoxMail(false)
-
     }
 
     return error
   }
 
-
-
   const handleFormEvent = (e: MouseEvent<HTMLButtonElement>) => {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user
-          navigate('/home')
-          //  console.log('başarılı =>', user)
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          console.log('başarısız =>', errorMessage)
-        })
-
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user
+        navigate('/home')
+        //  console.log('başarılı =>', user)
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        console.log('başarısız =>', errorMessage)
+      })
   }
-
-
 
   return (
     <Formik
@@ -108,7 +89,7 @@ invalid:ring-2 '
         />
         <label htmlFor='email'> </label>
         <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
-        <GoogleButton page={loginPage} />
+          <GoogleButton page={loginPage} />
         </div>
 
         <button

@@ -1,20 +1,18 @@
 import React from 'react'
 
-type error = {
-    validError: boolean,
-}
+import { errorEmail } from '../../types/Todos'
 
-
- const EmailValidError = ({validError}: error) => {
+const EmailValidError = ({ validError }: errorEmail) => {
   return (
-    <> {validError ? (
+    <>
+      {' '}
+      {validError ? (
         <span className='text-red-600 font-roboto text-xs absolute translate-y-1 m-0 flex'>
           {'email address is invalid'}
         </span>
-      ) : null}</>
+      ) : null}
+    </>
   )
 }
-
-
 
 export default EmailValidError
