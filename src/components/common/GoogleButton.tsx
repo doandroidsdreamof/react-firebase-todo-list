@@ -1,16 +1,9 @@
 import React, { FC, MouseEvent, useContext } from 'react'
-import {
-  getAuth,
-  GoogleAuthProvider,
-  linkWithPopup,
-  signInWithPopup,
-} from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, linkWithPopup, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../context/AuthContext'
-interface PageProps {
-  page: string
-}
+import { PageProps } from '../../types/Todos'
 
 const GoogleButton: FC<PageProps> = (props) => {
   const auth = getAuth()
@@ -18,39 +11,29 @@ const GoogleButton: FC<PageProps> = (props) => {
   const navigate = useNavigate()
   const annonUser: any = auth.currentUser
 
-  const handleClick =  (e: MouseEvent<HTMLButtonElement>) => {
-    linkWithPopup(annonUser, new GoogleAuthProvider()).then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const user = result.user;
-
-    }).catch((error) => {
-      loginWithGoogle()
-      console.log(error)
-    });
-
-
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    linkWithPopup(annonUser, new GoogleAuthProvider())
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        const user = result.user
+      })
+      .catch((error) => {
+        loginWithGoogle()
+        console.log(error)
+      })
   }
 
   function loginWithGoogle() {
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        // console.log(credential)
-
+        const credential = GoogleAuthProvider.credentialFromResult(result)
+        const token = credential?.accessToken
         navigate('/home')
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        const email = error.customData.email
         console.log(error)
-      });
+      })
   }
-
-
-
-
 
   return (
     <button

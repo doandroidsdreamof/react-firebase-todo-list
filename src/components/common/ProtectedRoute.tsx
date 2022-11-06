@@ -3,20 +3,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Navigate } from 'react-router-dom'
 
 import { AuthContext } from '../../context/AuthContext'
+import { protectedChild } from '../../types/Todos'
 
-//React.ReactNode
-type child = {
-  children: React.ReactNode
-}
-
-const ProtectedRoute = ({ children }: child) => {
+const ProtectedRoute = ({ children }: protectedChild) => {
   const user = useContext(AuthContext)
   const auth = getAuth()
   const [logic, setLogic] = useState(false)
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const uid = user.uid
       setLogic(false)
     } else {
       setLogic(true)

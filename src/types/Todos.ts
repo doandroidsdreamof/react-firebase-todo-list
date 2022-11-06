@@ -1,10 +1,10 @@
 export interface Todosdata {
-  todo?: string;
-  completed?: boolean;
-  date?: any;
-  createdAt?: string;
-  id?: string;
-  owner?: string;
+  todo?: string
+  completed?: boolean
+  date?: any
+  createdAt?: string
+  id?: string
+  owner?: string
 }
 
 export interface TodoWrapperChildren {
@@ -28,35 +28,36 @@ export interface completedTodos {
 export interface ChartData {
   completed?: number
   unCompleted?: number
-
 }
 export interface LoginRegisterProps {
   children: React.ReactNode
   state: string
 }
 
-
 export type errorEmail = {
-  validError: boolean,
+  validError: boolean
 }
-
 
 export interface Values {
   password: string
   email: string
 }
 
-
-
 export interface AuthContextInterFace {
-  user: React.ReactNode;
-  loading: boolean;
-  displayName: string;
+  user: React.ReactNode
+  loading: boolean
+  displayName: string
+}
+
+export type child = {
+  children: React.ReactNode
+}
+
+export interface PageProps {
+  page: string
 }
 
 
-
-export type child = {
-  children: React.ReactNode;
-
+export type protectedChild = {
+  children: React.ReactNode
 }

@@ -13,7 +13,7 @@ const LogOutButton = () => {
 
 
 
-const handleClick = (e: MouseEvent<HTMLButtonElement>) =>{
+const handleClick = (e: MouseEvent<HTMLButtonElement>)=>{
   navigate('/')
   return signOutUser()
 }
