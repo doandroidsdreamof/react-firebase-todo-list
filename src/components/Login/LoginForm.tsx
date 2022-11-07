@@ -92,7 +92,7 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
 invalid:ring-2 '
           />
           <label htmlFor='email'> </label>
-          <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
+          <div className=' flex w-full mt-4 mb-2  flex-row h-14 text-center justify-center'>
             <GoogleButton page={loginPage} />
           </div>
 

@@ -57,7 +57,7 @@
   <img src="/screenshots/profile-page.png" alt="profile-page" />
 </div>
 <div align="center">
-  <img src="/screenshots/login.png" alt="login" />
+  <img src="/screenshots/login2.png" alt="login" />
 </div>
 <div align="center">
   <img src="/screenshots/register2.png" alt="register" />
