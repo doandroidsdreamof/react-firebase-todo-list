@@ -8,6 +8,9 @@ import GoogleButton from '../common/GoogleButton'
 
 import EmailValidError from './EmailValidError'
 
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify'
+import { injectStyle } from 'react-toastify/dist/inject-style'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -43,61 +46,67 @@ const LoginForm = () => {
       .catch((error) => {
         const errorMessage = error.message
         console.error(errorMessage)
+        injectStyle()
+        const notify = () => toast.dark('user not found')
+        notify()
       })
   }
 
   return (
-    <Formik
-      initialValues={{
-        password: '',
-        email: '',
-      }}
-      onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
-        JSON.stringify(values, null, 2)
-        setSubmitting(false)
-      }}
-    >
-      <Form>
-        <Field
-          id='email'
-          name='email'
-          placeholder='email'
-          type='email'
-          required
-          validate={validateEmail}
-          className='block w-full px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+    <>
+      <ToastContainer />
+      <Formik
+        initialValues={{
+          password: '',
+          email: '',
+        }}
+        onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
+          JSON.stringify(values, null, 2)
+          setSubmitting(false)
+        }}
+      >
+        <Form>
+          <Field
+            id='email'
+            name='email'
+            placeholder='email'
+            type='email'
+            required
+            validate={validateEmail}
+            className='block w-full    px-4 py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
 invalid:ring-2 '
-        />
-        <EmailValidError validError={alertBoxMail} />
-        <label htmlFor='password'></label>
-        <input
-          id='password'
-          name='password'
-          placeholder='password'
-          type='password'
-          required
-          minLength={8}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-          className='block w-full px-4 py-3 mt-8  rounded-md border border-gray-300 text-gray-600 transition duration-300
+          />
+          <EmailValidError validError={alertBoxMail} />
+          <label htmlFor='password'></label>
+          <input
+            id='password'
+            name='password'
+            placeholder='password'
+            type='password'
+            required
+            minLength={8}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            className='block w-full px-4 py-3 mt-4  rounded-md border border-gray-300 text-gray-600 transition duration-300
 focus:ring-2 focus:ring-sky-300 focus:outline-none
 invalid:ring-2 '
-        />
-        <label htmlFor='email'> </label>
-        <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
-          <GoogleButton page={loginPage} />
-        </div>
+          />
+          <label htmlFor='email'> </label>
+          <div className=' flex w-full mt-4  flex-row h-11 text-center justify-center'>
+            <GoogleButton page={loginPage} />
+          </div>
 
-        <button
-          className='w-full  py-3 px-6 rounded-md bg-sky-600
+          <button
+            className='w-full  py-3 px-6 rounded-md bg-sky-600
                           focus:bg-sky-700 active:bg-sky-500'
-          onClick={handleFormEvent}
-          type='button'
-        >
-          <span className='text-white'>Continue</span>
-        </button>
-      </Form>
-    </Formik>
+            onClick={handleFormEvent}
+            type='button'
+          >
+            <span className='text-white'>Continue</span>
+          </button>
+        </Form>
+      </Formik>
+    </>
   )
 }
 

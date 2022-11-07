@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 import GoogleButton from '../../components/common/GoogleButton'
 import EmailValidError from '../Login/EmailValidError'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify'
+import { injectStyle } from 'react-toastify/dist/inject-style'
 
 interface User {
   name: string
@@ -78,12 +81,15 @@ const RegisterForm = () => {
         navigate('/home')
       })
       .catch((error) => {
-        console.log('register error =>', error)
+        injectStyle()
+        const notify = () => toast.dark('Please fill out required fields')
+        notify()
       })
   }
 
   return (
     <>
+          <ToastContainer />
       <div className='flex gap-x-3 space-y-4  flex-col lg:flex-row '>
         <label htmlFor='firstName' className='hidden'></label>
         <input
