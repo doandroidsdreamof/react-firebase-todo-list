@@ -50,20 +50,20 @@
 ### :camera: Screenshots
 
 <div align="center">
-  <img src="/screenshots/home-page.png" alt="screenshot" />
+  <img src="/screenshots/home-page.png" alt="home-page" />
 </div>
 
 <div align="center">
-  <img src="/screenshots/profile-page.png" alt="screenshot" />
+  <img src="/screenshots/profile-page.png" alt="profile-page" />
 </div>
 <div align="center">
-  <img src="/screenshots/login.png" alt="screenshot" />
+  <img src="/screenshots/login.png" alt="login" />
 </div>
 <div align="center">
-  <img src="/screenshots/register.png" alt="screenshot" />
+  <img src="/screenshots/register2.png" alt="register" />
 </div>
 <div align="center">
-  <img   width="49%" src="/screenshots/home-page-mobile2.png" alt="screenshot" />    <img  width="49%" src="/screenshots/mobile-navbar.png" alt="screenshot" />
+  <img   width="49%" src="/screenshots/home-page-mobile2.png" alt="home-page-mobile" />    <img  width="49%" src="/screenshots/mobile-navbar.png" alt="mobile-navigation" />
 </div>
 
 <!-- TechStack -->

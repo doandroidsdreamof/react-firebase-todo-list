@@ -1,9 +1,9 @@
-import React, {MouseEvent, useState } from 'react'
-import { createUserWithEmailAndPassword, getAuth,updateProfile } from 'firebase/auth';
+import React, { MouseEvent, useState } from 'react'
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
+import GoogleButton from '../../components/common/GoogleButton'
 import EmailValidError from '../Login/EmailValidError'
-
 
 interface User {
   name: string
@@ -14,8 +14,9 @@ interface User {
 
 const RegisterForm = () => {
   const [alertBoxMail, setAlertBoxMail] = useState(false)
-  const auth = getAuth();
+  const auth = getAuth()
   const navigate = useNavigate()
+  const registerPage = 'register'
   const [data, setData] = React.useState<User>({
     name: '',
     lastName: '',
@@ -32,14 +33,14 @@ const RegisterForm = () => {
     } else if (!emailValidation.test(value)) {
       error = 'Invalid email address'
       setAlertBoxMail(true)
-      setData(data=>({
+      setData((data) => ({
         ...data,
-          email: ''
+        email: '',
       }))
     } else if (emailValidation.test(value) || value.length == 0) {
-      setData(data=>({
+      setData((data) => ({
         ...data,
-          email: value
+        email: value,
       }))
       setAlertBoxMail(false)
     }
@@ -48,50 +49,42 @@ const RegisterForm = () => {
   }
 
   const handlePassword = async (e: any) => {
-    setData(data=>({
+    setData((data) => ({
       ...data,
-        password: e
+      password: e,
     }))
-
   }
   const handleName = async (e: string) => {
-    setData(data=>({
+    setData((data) => ({
       ...data,
-        name: e
+      name: e,
     }))
   }
   const handleLastName = async (e: string) => {
-    setData(data=>({
+    setData((data) => ({
       ...data,
-        lastName: e
+      lastName: e,
     }))
   }
 
-
-const handleSubmit = (e: MouseEvent<HTMLButtonElement>) =>{
-  e.preventDefault()
-  createUserWithEmailAndPassword(auth, data.email, data.password)
-  .then(async (res) => {
-    const user = res.user;
-    await updateProfile(user, {
-      displayName: data.name,
-    });
-    navigate('/home')
-  })
-  .catch((error) => {
-    console.log('register error =>', error)
-
-
-  });
-
-}
-
-
-
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(async (res) => {
+        const user = res.user
+        await updateProfile(user, {
+          displayName: data.name,
+        })
+        navigate('/home')
+      })
+      .catch((error) => {
+        console.log('register error =>', error)
+      })
+  }
 
   return (
     <>
-      <div className='flex gap-x-3 space-y-5  flex-col lg:flex-row '>
+      <div className='flex gap-x-3 space-y-4  flex-col lg:flex-row '>
         <label htmlFor='firstName' className='hidden'></label>
         <input
           type='text'
@@ -141,14 +134,17 @@ focus:ring-2 focus:ring-sky-300 focus:outline-none
         placeholder='password'
         minLength={8}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePassword(e.target.value)}
-        className='block w-full px-4   py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
+        className='block w-full px-4  py-3 rounded-md border border-gray-300 text-gray-600 transition duration-300
                                   focus:ring-2 focus:ring-sky-300 focus:outline-none
                                   invalid:ring-2 '
       />
+      <div className=' flex translate-y-1 w-full  flex-row h-14 text-center justify-center'>
+        <GoogleButton page={registerPage} />
+      </div>
       <button
         className='w-full py-3 px-6 rounded-md bg-sky-600
                 focus:bg-sky-700 active:bg-sky-500'
-                onClick={(e) => handleSubmit(e)}
+        onClick={(e) => handleSubmit(e)}
       >
         <span className='text-white'>Continue</span>
       </button>
