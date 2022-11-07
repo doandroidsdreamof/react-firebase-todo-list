@@ -148,7 +148,7 @@ Start the server
 ## :compass: Roadmap
 
 * [ ] Reauthentication
-* [&#x2611] Alert Messages
+* [x] Alert Messages
 * [ ] Welcome Email
 * [ ] Tests
 * [ ] Allowing Users To Access Their Data
