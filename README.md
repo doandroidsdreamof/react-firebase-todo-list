@@ -163,9 +163,6 @@ Start the server
 
 Contributions are always welcome!
 
-## :handshake: Contact
-
-mutlukuytuoglu@gmail.com
 
 
 
